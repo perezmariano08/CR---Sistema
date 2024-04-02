@@ -15,6 +15,7 @@ export const ModalContainerStyled = styled.div`
     @media (max-width: 968px) {
         width: 90%;
     }
+    z-index: 3;
 `
 
 export const ModalHeader = styled.div`

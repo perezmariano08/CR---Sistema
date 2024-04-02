@@ -159,15 +159,12 @@ const Temporadas = () => {
                             </ModalFormInputContainer>
                             <ModalFormInputContainer>
                                 Categoría
-                                <Select 
+                                <Select
                                     options={
                                         <>
-                                            <option value="" selected disabled>Seleccionar categoría</option>
-                                            <option value="value1">Serie A</option>
-                                            <option value="value2">Serie B</option>
-                                            <option value="value2">Serie C</option>
-                                            <option value="value2">Sub 19</option>
-                                            <option value="value2">Sub 23</option>
+                                            <option value="" selected disabled>Seleccionar torneo</option>
+                                            <option value="value1">Torneo Apertura</option>
+                                            <option value="value2">Torneo Clausura</option>
                                         </>
                                     }
                                 >

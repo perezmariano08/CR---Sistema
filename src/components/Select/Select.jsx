@@ -7,7 +7,7 @@ const Select = ({children, options}) => {
         <SelectContainerStyled>
             {children}
             <SelectWrapper>
-                {options}
+                { options }
             </SelectWrapper>
             <VscTriangleDown/>
         </SelectContainerStyled>

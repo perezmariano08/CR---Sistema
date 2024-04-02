@@ -86,7 +86,7 @@ const Equipos = () => {
                             </td>
                             <td>
                                 <div className='team'>
-                                    <img src={"/public/Escudos/lapeste.png"} />
+                                    <img src={"https://cr-sistema.vercel.app/public/Escudos/lapeste.png"} />
                                     La Peste
                                 </div>
                             </td>
@@ -170,7 +170,6 @@ const Equipos = () => {
                                             <option value="value2">Serie B</option>
                                             <option value="value2">Serie C</option>
                                             <option value="value2">Sub 19</option>
-                                            <option value="value2">Sub 23</option>
                                         </>
                                     }
                                 >
