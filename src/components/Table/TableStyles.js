@@ -57,6 +57,7 @@ export const TableContainerStyled = styled.table`
 
     .ellipsis {
         font-size: 20px;
+        color: var(--green);
     }
 
     .th-ellipsis {

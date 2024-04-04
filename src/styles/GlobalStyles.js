@@ -47,6 +47,7 @@ export const GlobalStyles = createGlobalStyle`
     // Estilo de la barra de desplazamiento para Chrome
     ::-webkit-scrollbar {
         width: 10px; /* Ancho de la barra de desplazamiento */
+        height: 100%;
     }
 
     /* Estilo del botón de flecha (flecha de desplazamiento) en Chrome */

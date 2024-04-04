@@ -17,6 +17,11 @@ export const AsideContainerStyled = styled.aside`
         width: 60%;
         display: none;
     }
+
+    &.page-temporadas .submenu{
+        height: auto;
+        background-color: transparent;
+    }
 `
 
 export const AsideHeader = styled.div`

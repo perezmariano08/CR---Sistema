@@ -18,7 +18,7 @@ import ModalDelete from '../../components/Modals/ModalDelete/ModalDelete';
 import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
 import Overlay from '../../components/Overlay/Overlay';
 
-const Temporadas = () => {
+const Años = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -46,7 +46,7 @@ const Temporadas = () => {
     
     return (
         <Content>
-            <ContentTitle>Temporadas</ContentTitle>
+            <ContentTitle>Años</ContentTitle>
             <ActionsCrud>
                 <ActionsCrudButtons>
                     <Button bg="success" color="white" onClick={openCreateModal}>
@@ -78,10 +78,7 @@ const Temporadas = () => {
                         <th>
                             <input className='checkbox' type="checkbox" name="" id="" />
                         </th>
-                        <th>Torneo</th>
-                        <th>Categoria</th>
                         <th>Año</th>
-                        <th>Sede</th>
                         <th>Descripcion</th>
                     </tr>
                 }
@@ -94,10 +91,7 @@ const Temporadas = () => {
                             <td>
                                 <input className='checkbox' type="checkbox" name="" id="" />
                             </td>
-                            <td>Torneo Apertura</td>
-                            <td>Serie A</td>
                             <td>2024</td>
-                            <td>Elenia</td>
                             <td>-</td>
                         </tr>
                         <tr className=''>
@@ -107,10 +101,7 @@ const Temporadas = () => {
                             <td>
                                 <input className='checkbox' type="checkbox" name="" id="" />
                             </td>
-                            <td>Torneo Apertura</td>
-                            <td>Serie A</td>
-                            <td>2024</td>
-                            <td>Elenia</td>
+                            <td>2023</td>
                             <td>-</td>
                         </tr>
                         <tr className=''>
@@ -120,10 +111,7 @@ const Temporadas = () => {
                             <td>
                                 <input className='checkbox' type="checkbox" name="" id="" />
                             </td>
-                            <td>Torneo Apertura</td>
-                            <td>Serie A</td>
-                            <td>2024</td>
-                            <td>Da Guia</td>
+                            <td>2022</td>
                             <td>-</td>
                         </tr>
                     </>
@@ -135,7 +123,7 @@ const Temporadas = () => {
                         animate={{ opacity: isCreateModalOpen ? 1 : 0 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        title="Crear temporada"
+                        title="Crear año"
                         onClickClose={closeCreateModal}
                         buttons={
                             <>
@@ -152,43 +140,8 @@ const Temporadas = () => {
                         form={
                             <>
                                 <ModalFormInputContainer>
-                                    Torneo
-                                    <Select
-                                        options={
-                                            <>
-                                                <option value="" selected disabled>Seleccionar torneo</option>
-                                                <option value="value1">Torneo Apertura</option>
-                                                <option value="value2">Torneo Clausura</option>
-                                            </>
-                                        }
-                                    >
-                                    </Select>
-                                </ModalFormInputContainer>
-                                <ModalFormInputContainer>
-                                    Categoría
-                                    <Select
-                                        options={
-                                            <>
-                                                <option value="" selected disabled>Seleccionar torneo</option>
-                                                <option value="value1">Torneo Apertura</option>
-                                                <option value="value2">Torneo Clausura</option>
-                                            </>
-                                        }
-                                    >
-                                    </Select>
-                                </ModalFormInputContainer>
-                                <ModalFormInputContainer>
                                     Año
-                                    <Select 
-                                        options={
-                                            <>
-                                                <option value="" selected disabled>Seleccionar año</option>
-                                                <option value="value1">2023</option>
-                                                <option value="value2">2024</option>
-                                            </>
-                                        }
-                                    >
-                                    </Select>
+                                    <Input type='text' placeholder="Escriba aqui el año..." />
                                 </ModalFormInputContainer>
                                 <ModalFormInputContainer>
                                     Añadir descripción (Opcional)
@@ -206,7 +159,7 @@ const Temporadas = () => {
                     animate={{ opacity: isDeleteModalOpen ? 1 : 0 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    message={"las temporadas"}
+                    message={"los años"}
                     onClickClose={closeDeleteModal}
                     buttons={
                         <>
@@ -228,4 +181,4 @@ const Temporadas = () => {
     );
 };
 
-export default Temporadas;
+export default Años;

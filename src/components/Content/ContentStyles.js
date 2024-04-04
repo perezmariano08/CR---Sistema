@@ -13,9 +13,11 @@ export const ContentContainerStyled = styled.div`
 export const ContentWrapper = styled.div`
     padding: 30px;
     display: flex;
-    height: 5000px;
     flex-direction: column;
     gap: 35px;
+    @media (max-width: 968px) {
+        padding: 20px 15px;
+    }
 `
 
 export const ContentTitle = styled.h1`

@@ -9,7 +9,6 @@ export const SelectContainerStyled = styled.div`
     font-size: 14px;
     gap: 5px;
     position: relative;
-    
     i, svg {
         position: absolute;
         right: 12px;

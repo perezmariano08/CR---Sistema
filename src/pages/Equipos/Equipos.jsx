@@ -14,7 +14,7 @@ import { ModalFormInputContainer } from '../../components/Modals/ModalsStyles'
 import Select from '../../components/Select/Select'
 import Input from '../../components/Input/Input'
 import ModalDelete from '../../components/Modals/ModalDelete/ModalDelete'
-import { motion } from 'framer-motion';
+import Overlay from '../../components/Overlay/Overlay'
 
 const Equipos = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -86,7 +86,7 @@ const Equipos = () => {
                             </td>
                             <td>
                                 <div className='team'>
-                                    <img src={"https://cr-sistema.vercel.app/public/Escudos/lapeste.png"} />
+                                    <img src={"/public/Escudos/lapeste.png"} />
                                     La Peste
                                 </div>
                             </td>
@@ -128,18 +128,15 @@ const Equipos = () => {
                     </>
                 }
             />
-            {/* Modal de creación */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isCreateModalOpen ? 1 : 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-            >
-                <ModalCreate 
+            {
+                isCreateModalOpen && <>
+                    <ModalCreate initial={{ opacity: 0 }}
+                    animate={{ opacity: isCreateModalOpen ? 1 : 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
                     title="Crear equipo"
                     onClickClose={closeCreateModal}
-                    buttons={
-                        <>
+                    buttons={ <>
                             <Button color={"danger"} onClick={closeCreateModal}>
                                 <IoClose/>
                                 Cancelar
@@ -150,8 +147,7 @@ const Equipos = () => {
                             </Button>
                         </>
                     }
-                    form={
-                        <>
+                    form={ <>
                             <ModalFormInputContainer>
                                 Nombre
                                 <Input type='text' placeholder="Escriba el nombre..." />
@@ -181,16 +177,16 @@ const Equipos = () => {
                             </ModalFormInputContainer>
                         </>
                     }
-                />
-            </motion.div>
-            {/* Modal de eliminación */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isDeleteModalOpen ? 1 : 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-            >
-                <ModalDelete
+                /> 
+                    <Overlay onClick={closeCreateModal}/>
+                </>
+            }
+            {
+                isDeleteModalOpen && <>
+                    <ModalDelete initial={{ opacity: 0 }}
+                    animate={{ opacity: isDeleteModalOpen ? 1 : 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
                     message={"los equipos"}
                     onClickClose={closeDeleteModal}
                     buttons={
@@ -205,8 +201,10 @@ const Equipos = () => {
                             </Button>
                         </>
                     }
-                />
-            </motion.div>
+                    />
+                    <Overlay onClick={closeDeleteModal}/>
+                </>
+            }
         </Content>
     )
 }

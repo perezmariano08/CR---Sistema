@@ -1,6 +1,7 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const ModalContainerStyled = styled.div`
+export const ModalContainerStyled = styled(motion.div)`
     width: 450px;
     background-color: var(--gray-500);
     display: flex;
@@ -12,10 +13,12 @@ export const ModalContainerStyled = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
+    z-index: 2;
+    max-height: 80vh;
+    overflow: scroll;
     @media (max-width: 968px) {
         width: 90%;
     }
-    z-index: 3;
 `
 
 export const ModalHeader = styled.div`
@@ -37,6 +40,7 @@ export const ModalForm = styled.form`
     width: 100%;
     flex-direction: column;
     gap: 20px;
+    z-index: 99;
 `
 
 export const ModalFormInputContainer = styled.form`

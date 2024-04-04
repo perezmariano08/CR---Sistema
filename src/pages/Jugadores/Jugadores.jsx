@@ -18,7 +18,7 @@ import ModalDelete from '../../components/Modals/ModalDelete/ModalDelete';
 import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
 import Overlay from '../../components/Overlay/Overlay';
 
-const Temporadas = () => {
+const Jugadores = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -46,7 +46,7 @@ const Temporadas = () => {
     
     return (
         <Content>
-            <ContentTitle>Temporadas</ContentTitle>
+            <ContentTitle>Jugadores</ContentTitle>
             <ActionsCrud>
                 <ActionsCrudButtons>
                     <Button bg="success" color="white" onClick={openCreateModal}>
@@ -78,11 +78,10 @@ const Temporadas = () => {
                         <th>
                             <input className='checkbox' type="checkbox" name="" id="" />
                         </th>
-                        <th>Torneo</th>
-                        <th>Categoria</th>
-                        <th>Año</th>
-                        <th>Sede</th>
-                        <th>Descripcion</th>
+                        <th>DNI</th>
+                        <th>Nombre</th>
+                        <th>Posición</th>
+                        <th>Equipo</th>
                     </tr>
                 }
                 tbody={
@@ -94,11 +93,10 @@ const Temporadas = () => {
                             <td>
                                 <input className='checkbox' type="checkbox" name="" id="" />
                             </td>
-                            <td>Torneo Apertura</td>
-                            <td>Serie A</td>
-                            <td>2024</td>
-                            <td>Elenia</td>
-                            <td>-</td>
+                            <td>12345678</td>
+                            <td>BASSI, Alessandro</td>
+                            <td>VOL</td>
+                            <td>T-USA FC</td>
                         </tr>
                         <tr className=''>
                             <td>
@@ -107,11 +105,10 @@ const Temporadas = () => {
                             <td>
                                 <input className='checkbox' type="checkbox" name="" id="" />
                             </td>
-                            <td>Torneo Apertura</td>
-                            <td>Serie A</td>
-                            <td>2024</td>
-                            <td>Elenia</td>
-                            <td>-</td>
+                            <td>12345678</td>
+                            <td>POZZO, Joaquín</td>
+                            <td>DEF</td>
+                            <td>T-USA FC</td>
                         </tr>
                         <tr className=''>
                             <td>
@@ -120,11 +117,34 @@ const Temporadas = () => {
                             <td>
                                 <input className='checkbox' type="checkbox" name="" id="" />
                             </td>
-                            <td>Torneo Apertura</td>
-                            <td>Serie A</td>
-                            <td>2024</td>
-                            <td>Da Guia</td>
-                            <td>-</td>
+                            <td>12345678</td>
+                            <td>PEREZ, Mariano</td>
+                            <td>DEL</td>
+                            <td>T-USA FC</td>
+                        </tr>
+                        <tr className=''>
+                            <td>
+                                <HiOutlineEllipsisVertical className='ellipsis'/>
+                            </td>
+                            <td>
+                                <input className='checkbox' type="checkbox" name="" id="" />
+                            </td>
+                            <td>12345678</td>
+                            <td>HELMAN, Ramiro</td>
+                            <td>DEL</td>
+                            <td>T-USA FC</td>
+                        </tr>
+                        <tr className=''>
+                            <td>
+                                <HiOutlineEllipsisVertical className='ellipsis'/>
+                            </td>
+                            <td>
+                                <input className='checkbox' type="checkbox" name="" id="" />
+                            </td>
+                            <td>12345678</td>
+                            <td>PEREZ SEIA, Conrado</td>
+                            <td>ARQ</td>
+                            <td>T-USA FC</td>
                         </tr>
                     </>
                 }
@@ -135,7 +155,7 @@ const Temporadas = () => {
                         animate={{ opacity: isCreateModalOpen ? 1 : 0 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        title="Crear temporada"
+                        title="Crear jugador"
                         onClickClose={closeCreateModal}
                         buttons={
                             <>
@@ -151,48 +171,31 @@ const Temporadas = () => {
                         }
                         form={
                             <>
+                                
                                 <ModalFormInputContainer>
-                                    Torneo
-                                    <Select
-                                        options={
-                                            <>
-                                                <option value="" selected disabled>Seleccionar torneo</option>
-                                                <option value="value1">Torneo Apertura</option>
-                                                <option value="value2">Torneo Clausura</option>
-                                            </>
-                                        }
-                                    >
-                                    </Select>
+                                    DNI
+                                    <Input type='text' placeholder="Escriba el DNI..." />
                                 </ModalFormInputContainer>
                                 <ModalFormInputContainer>
-                                    Categoría
-                                    <Select
-                                        options={
-                                            <>
-                                                <option value="" selected disabled>Seleccionar torneo</option>
-                                                <option value="value1">Torneo Apertura</option>
-                                                <option value="value2">Torneo Clausura</option>
-                                            </>
-                                        }
-                                    >
-                                    </Select>
+                                    Nombre
+                                    <Input type='text' placeholder="Escriba el DNI..." />
                                 </ModalFormInputContainer>
                                 <ModalFormInputContainer>
-                                    Año
+                                    Posición
+                                    <Input type='text' placeholder="Escriba el DNI..." />
+                                </ModalFormInputContainer>
+                                <ModalFormInputContainer>
+                                    Equipo
                                     <Select 
                                         options={
                                             <>
-                                                <option value="" selected disabled>Seleccionar año</option>
+                                                <option value="" selected disabled>Seleccionar equipo</option>
                                                 <option value="value1">2023</option>
                                                 <option value="value2">2024</option>
                                             </>
                                         }
                                     >
                                     </Select>
-                                </ModalFormInputContainer>
-                                <ModalFormInputContainer>
-                                    Añadir descripción (Opcional)
-                                    <Input type='text' placeholder="Escriba aqui..." />
                                 </ModalFormInputContainer>
                             </>
                         }
@@ -206,7 +209,7 @@ const Temporadas = () => {
                     animate={{ opacity: isDeleteModalOpen ? 1 : 0 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    message={"las temporadas"}
+                    message={"los jugadores"}
                     onClickClose={closeDeleteModal}
                     buttons={
                         <>
@@ -228,4 +231,4 @@ const Temporadas = () => {
     );
 };
 
-export default Temporadas;
+export default Jugadores;

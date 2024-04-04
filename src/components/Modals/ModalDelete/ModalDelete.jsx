@@ -3,9 +3,14 @@ import { ModalButtons, ModalContainerStyled, ModalMessage, ModalHeader } from '.
 import { IoClose } from "react-icons/io5";
 import { GoAlert } from "react-icons/go";
 
-const ModalDelete = ({ buttons, message, onClickClose }) => {
+const ModalDelete = ({ buttons, message, onClickClose, initial, animate, exit, transition }) => {
     return (
-        <ModalContainerStyled>
+        <ModalContainerStyled
+            initial={initial}
+            animate={animate}
+            exit={exit}
+            transition={transition}
+        >
             <ModalHeader>
                 <p>Confirmar</p>
                 <IoClose onClick={onClickClose}/>
