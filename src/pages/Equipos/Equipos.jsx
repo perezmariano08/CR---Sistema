@@ -15,6 +15,9 @@ import Select from '../../components/Select/Select'
 import Input from '../../components/Input/Input'
 import ModalDelete from '../../components/Modals/ModalDelete/ModalDelete'
 import Overlay from '../../components/Overlay/Overlay'
+import BasicFilterDemo from '../../components/Table/Table'
+import { dataEquipos, dataEquiposColumns } from '../../Data/Equipos/DataEquipos'
+import { dataCategorias } from '../../Data/Categorias/Categorias'
 
 const Equipos = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -63,14 +66,14 @@ const Equipos = () => {
                     </Button>
                 </ActionsCrudButtons>
             </ActionsCrud>
-            <Table 
+            {/* <Table 
                 thead={
                     <tr>
                         <th className='th-ellipsis'></th>
-                        <th>
+                        <th className='th-checkbox'>
                             <input className='checkbox' type="checkbox" name="" id="" />
                         </th>
-                        <th>Equipo</th>
+                        <th className='th-team'>Equipo</th>
                         <th>Categoria</th>
                         <th>Descripcion</th>
                     </tr>
@@ -78,7 +81,7 @@ const Equipos = () => {
                 tbody={
                     <>
                         <tr>
-                            <td className='th-ellipsis'>
+                            <td>
                                 <HiOutlineEllipsisVertical className='ellipsis'/>
                             </td>
                             <td>
@@ -93,7 +96,7 @@ const Equipos = () => {
                             <td>Serie A</td>
                             <td>-</td>
                         </tr>
-                        <tr className=''>
+                        <tr>
                             <td>
                                 <HiOutlineEllipsisVertical className='ellipsis'/>
                             </td>
@@ -109,7 +112,7 @@ const Equipos = () => {
                             <td>Serie A</td>
                             <td>-</td>
                         </tr>
-                        <tr className=''>
+                        <tr>
                             <td>
                                 <HiOutlineEllipsisVertical className='ellipsis'/>
                             </td>
@@ -127,7 +130,8 @@ const Equipos = () => {
                         </tr>
                     </>
                 }
-            />
+            /> */}
+            <Table data={dataEquipos} dataColumns={dataEquiposColumns} arrayName={"Equipos"}/>
             {
                 isCreateModalOpen && <>
                     <ModalCreate initial={{ opacity: 0 }}
@@ -159,15 +163,8 @@ const Equipos = () => {
                             <ModalFormInputContainer>
                                 Categoría
                                 <Select
-                                    options={
-                                        <>
-                                            <option value="" selected disabled>Seleccionar categoría</option>
-                                            <option value="value1">Serie A</option>
-                                            <option value="value2">Serie B</option>
-                                            <option value="value2">Serie C</option>
-                                            <option value="value2">Sub 19</option>
-                                        </>
-                                    }
+                                    data={dataCategorias}
+                                    placeholder="Seleccionar equipo"
                                 >
                                 </Select>
                             </ModalFormInputContainer>

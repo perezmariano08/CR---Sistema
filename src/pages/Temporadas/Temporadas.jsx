@@ -17,6 +17,10 @@ import { IoCheckmark, IoClose } from "react-icons/io5";
 import ModalDelete from '../../components/Modals/ModalDelete/ModalDelete';
 import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
 import Overlay from '../../components/Overlay/Overlay';
+import { dataTorneos } from '../../Data/Torneos/DataTorneos';
+import { dataAños } from '../../Data/Años/DataAños';
+import { dataCategorias } from '../../Data/Categorias/Categorias';
+import { dataTemporadas, dataTemporadasColumns } from '../../Data/Temporadas/Temporadas';
 
 const Temporadas = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -72,63 +76,7 @@ const Temporadas = () => {
                     </Button>
                 </ActionsCrudButtons>
             </ActionsCrud>
-            <Table thead={
-                    <tr>
-                        <th className='th-ellipsis'></th>
-                        <th>
-                            <input className='checkbox' type="checkbox" name="" id="" />
-                        </th>
-                        <th>Torneo</th>
-                        <th>Categoria</th>
-                        <th>Año</th>
-                        <th>Sede</th>
-                        <th>Descripcion</th>
-                    </tr>
-                }
-                tbody={
-                    <>
-                        <tr>
-                            <td className='th-ellipsis'>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>Torneo Apertura</td>
-                            <td>Serie A</td>
-                            <td>2024</td>
-                            <td>Elenia</td>
-                            <td>-</td>
-                        </tr>
-                        <tr className=''>
-                            <td>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>Torneo Apertura</td>
-                            <td>Serie A</td>
-                            <td>2024</td>
-                            <td>Elenia</td>
-                            <td>-</td>
-                        </tr>
-                        <tr className=''>
-                            <td>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>Torneo Apertura</td>
-                            <td>Serie A</td>
-                            <td>2024</td>
-                            <td>Da Guia</td>
-                            <td>-</td>
-                        </tr>
-                    </>
-                }
-            />
+            <Table data={dataTemporadas} dataColumns={dataTemporadasColumns} arrayName={"Temporadas"}/>
             {
                 isCreateModalOpen && <>
                     <ModalCreate initial={{ opacity: 0 }}
@@ -154,39 +102,25 @@ const Temporadas = () => {
                                 <ModalFormInputContainer>
                                     Torneo
                                     <Select
-                                        options={
-                                            <>
-                                                <option value="" selected disabled>Seleccionar torneo</option>
-                                                <option value="value1">Torneo Apertura</option>
-                                                <option value="value2">Torneo Clausura</option>
-                                            </>
-                                        }
+                                        data={dataTorneos}
+                                        placeholder="Seleccionar torneo"
                                     >
                                     </Select>
                                 </ModalFormInputContainer>
                                 <ModalFormInputContainer>
                                     Categoría
                                     <Select
-                                        options={
-                                            <>
-                                                <option value="" selected disabled>Seleccionar torneo</option>
-                                                <option value="value1">Torneo Apertura</option>
-                                                <option value="value2">Torneo Clausura</option>
-                                            </>
-                                        }
+                                        data={dataCategorias}
+                                        placeholder="Seleccionar categoria"
                                     >
                                     </Select>
                                 </ModalFormInputContainer>
                                 <ModalFormInputContainer>
                                     Año
                                     <Select 
-                                        options={
-                                            <>
-                                                <option value="" selected disabled>Seleccionar año</option>
-                                                <option value="value1">2023</option>
-                                                <option value="value2">2024</option>
-                                            </>
-                                        }
+                                        data={dataAños}
+                                        column={"año"}
+                                        placeholder="Seleccionar año"
                                     >
                                     </Select>
                                 </ModalFormInputContainer>

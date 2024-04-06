@@ -43,7 +43,7 @@ export const ModalForm = styled.form`
     z-index: 99;
 `
 
-export const ModalFormInputContainer = styled.form`
+export const ModalFormInputContainer = styled.div`
     display: flex;
     width: 100%;
     flex-direction: column;

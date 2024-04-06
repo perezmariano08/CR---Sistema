@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Content from '../../components/Content/Content';
 import ActionsCrud from '../../components/ActionsCrud/ActionsCrud';
@@ -17,6 +17,8 @@ import { IoCheckmark, IoClose } from "react-icons/io5";
 import ModalDelete from '../../components/Modals/ModalDelete/ModalDelete';
 import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
 import Overlay from '../../components/Overlay/Overlay';
+import { dataEquipos } from '../../Data/Equipos/DataEquipos';
+import { dataJugadores, dataJugadoresColumns } from '../../Data/Jugadores/Jugadores';
 
 const Jugadores = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -72,83 +74,7 @@ const Jugadores = () => {
                     </Button>
                 </ActionsCrudButtons>
             </ActionsCrud>
-            <Table thead={
-                    <tr>
-                        <th className='th-ellipsis'></th>
-                        <th>
-                            <input className='checkbox' type="checkbox" name="" id="" />
-                        </th>
-                        <th>DNI</th>
-                        <th>Nombre</th>
-                        <th>Posición</th>
-                        <th>Equipo</th>
-                    </tr>
-                }
-                tbody={
-                    <>
-                        <tr>
-                            <td className='th-ellipsis'>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>12345678</td>
-                            <td>BASSI, Alessandro</td>
-                            <td>VOL</td>
-                            <td>T-USA FC</td>
-                        </tr>
-                        <tr className=''>
-                            <td>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>12345678</td>
-                            <td>POZZO, Joaquín</td>
-                            <td>DEF</td>
-                            <td>T-USA FC</td>
-                        </tr>
-                        <tr className=''>
-                            <td>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>12345678</td>
-                            <td>PEREZ, Mariano</td>
-                            <td>DEL</td>
-                            <td>T-USA FC</td>
-                        </tr>
-                        <tr className=''>
-                            <td>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>12345678</td>
-                            <td>HELMAN, Ramiro</td>
-                            <td>DEL</td>
-                            <td>T-USA FC</td>
-                        </tr>
-                        <tr className=''>
-                            <td>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>12345678</td>
-                            <td>PEREZ SEIA, Conrado</td>
-                            <td>ARQ</td>
-                            <td>T-USA FC</td>
-                        </tr>
-                    </>
-                }
-            />
+            <Table data={dataJugadores} dataColumns={dataJugadoresColumns} arrayName={"Jugadores"}/>
             {
                 isCreateModalOpen && <>
                     <ModalCreate initial={{ opacity: 0 }}
@@ -171,7 +97,6 @@ const Jugadores = () => {
                         }
                         form={
                             <>
-                                
                                 <ModalFormInputContainer>
                                     DNI
                                     <Input type='text' placeholder="Escriba el DNI..." />
@@ -187,13 +112,8 @@ const Jugadores = () => {
                                 <ModalFormInputContainer>
                                     Equipo
                                     <Select 
-                                        options={
-                                            <>
-                                                <option value="" selected disabled>Seleccionar equipo</option>
-                                                <option value="value1">2023</option>
-                                                <option value="value2">2024</option>
-                                            </>
-                                        }
+                                        data={dataEquipos}
+                                        placeholder="Seleccionar equipo"
                                     >
                                     </Select>
                                 </ModalFormInputContainer>

@@ -15,8 +15,9 @@ import Select from '../../components/Select/Select';
 import Input from '../../components/Input/Input';
 import { IoCheckmark, IoClose } from "react-icons/io5";
 import ModalDelete from '../../components/Modals/ModalDelete/ModalDelete';
-import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
 import Overlay from '../../components/Overlay/Overlay';
+import { dataUsuarios, dataUsuariosColumns } from '../../Data/Usuarios/DataUsuarios';
+import { dataEquipos } from '../../Data/Equipos/DataEquipos';
 
 const Usuarios = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -46,6 +47,7 @@ const Usuarios = () => {
     
     return (
         <Content>
+            <Button></Button>
             <ContentTitle>Usuarios</ContentTitle>
             <ActionsCrud>
                 <ActionsCrudButtons>
@@ -72,75 +74,7 @@ const Usuarios = () => {
                     </Button>
                 </ActionsCrudButtons>
             </ActionsCrud>
-            <Table thead={
-                    <tr>
-                        <th className='th-ellipsis'></th>
-                        <th>
-                            <input className='checkbox' type="checkbox" name="" id="" />
-                        </th>
-                        <th>DNI</th>
-                        <th>Nombre</th>
-                        <th>Nacimiento</th>
-                        <th>Telefono</th>
-                        <th>Email</th>
-                        <th>Rol</th>
-                        <th>Email</th>
-                        <th>Equipo FAV</th>
-                    </tr>
-                }
-                tbody={
-                    <>
-                        <tr>
-                            <td className='th-ellipsis'>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>12345678</td>
-                            <td>POZZO, Joaquín</td>
-                            <td>2001-06-09</td>
-                            <td>3512345678</td>
-                            <td>pozzojoa@gmail.com</td>
-                            <td>ADMIN</td>
-                            <td>Activo</td>
-                            <td>T-USA FC</td>
-                        </tr>
-                        <tr className=''>
-                            <td>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>12345678</td>
-                            <td>PEREYRA, Octavio</td>
-                            <td>2001-06-09</td>
-                            <td>3512345678</td>
-                            <td>pozzojoa@gmail.com</td>
-                            <td>CAPITÁN</td>
-                            <td>Activo</td>
-                            <td>T-USA FC</td>
-                        </tr>
-                        <tr className=''>
-                            <td>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>12345678</td>
-                            <td>PEREZ, Mariano</td>
-                            <td>2001-06-09</td>
-                            <td>3512345678</td>
-                            <td>pozzojoa@gmail.com</td>
-                            <td>PLANILLERO</td>
-                            <td>Activo</td>
-                            <td>-</td>
-                        </tr>
-                    </>
-                }
-            />
+            <Table data={dataUsuarios} dataColumns={dataUsuariosColumns}/>
             {
                 isCreateModalOpen && <>
                     <ModalCreate initial={{ opacity: 0 }}
@@ -191,26 +125,22 @@ const Usuarios = () => {
                                 <ModalFormInputContainer>
                                     Estado
                                     <Select 
-                                        options={
-                                            <>
-                                                <option value="" selected disabled>Seleccionar estado</option>
-                                                <option value="value1">Activo</option>
-                                                <option value="value2">No Activo</option>
-                                            </>
+                                        data={
+                                            [
+                                                {estado: "Activo"},
+                                                {estado: "No Activo"}
+                                            ]
                                         }
+                                        placeholder={"Seleccionar estado"}
+                                        column='estado'
                                     >
                                     </Select>
                                 </ModalFormInputContainer>
                                 <ModalFormInputContainer>
                                     Equipo favorito
                                     <Select 
-                                        options={
-                                            <>
-                                                <option value="" selected disabled>Seleccionar estado</option>
-                                                <option value="value1">T-USA FC</option>
-                                                <option value="value2">Celta de Vino</option>
-                                            </>
-                                        }
+                                        data={dataEquipos}
+                                        placeholder="Seleccionar equipo"
                                     >
                                     </Select>
                                 </ModalFormInputContainer>

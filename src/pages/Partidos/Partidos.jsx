@@ -7,6 +7,7 @@ import { IoTrashOutline } from 'react-icons/io5'
 import { LuDownload, LuUpload } from 'react-icons/lu'
 import Table from '../../components/Table/Table'
 import { ContentTitle } from '../../components/Content/ContentStyles'
+import { dataPartidos, dataPartidosColumns } from '../../Data/Partidos/Partidos'
 
 const Partidos = () => {
   return (
@@ -36,7 +37,7 @@ const Partidos = () => {
                     </Button>
                 </ActionsCrudButtons>
             </ActionsCrud>
-            <Table/>
+            <Table data={dataPartidos} dataColumns={dataPartidosColumns} arrayName={"Partidos"}/>
         </Content>
   )
 }

@@ -96,4 +96,42 @@ export const GlobalStyles = createGlobalStyle`
             padding: 30px 20px 140px 20px;
         }
     }
+
+    .MuiPaper-root {
+        & > div {
+            background-color: var(--gray-300);
+
+            .MuiButtonBase-root {
+                color: var(--white);
+            }
+
+            .Mui-selected {
+                
+                td {
+                    background-color: var(--green-opacity);
+                    color: var(--green) !important;
+                }
+            }
+        }   
+        & th, td {
+            background-color: transparent;
+            color: var(--white) !important;
+            padding: 10px 15px;
+            height: auto;
+            border-color: var(--gray-200);
+        }
+    }
+
+    .p-dropdown-panel {
+        background-color: var(--gray-300);
+        border-radius: 10px;
+
+        & .p-dropdown-items-wrapper .p-dropdown-items {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+    }
 `

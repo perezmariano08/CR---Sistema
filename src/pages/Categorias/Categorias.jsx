@@ -17,6 +17,7 @@ import { IoCheckmark, IoClose } from "react-icons/io5";
 import ModalDelete from '../../components/Modals/ModalDelete/ModalDelete';
 import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
 import Overlay from '../../components/Overlay/Overlay';
+import { dataCategorias, dataCategoriasColumns } from '../../Data/Categorias/Categorias';
 
 const Categorias = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -72,71 +73,7 @@ const Categorias = () => {
                     </Button>
                 </ActionsCrudButtons>
             </ActionsCrud>
-            <Table thead={
-                    <tr>
-                        <th className='th-ellipsis'></th>
-                        <th>
-                            <input className='checkbox' type="checkbox" name="" id="" />
-                        </th>
-                        <th>Categoría</th>
-                        <th>Descripcion</th>
-                    </tr>
-                }
-                tbody={
-                    <>
-                        <tr>
-                            <td className='th-ellipsis'>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>Serie A</td>
-                            <td>-</td>
-                        </tr>
-                        <tr className=''>
-                            <td>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>Serie B</td>
-                            <td>-</td>
-                        </tr>
-                        <tr className=''>
-                            <td>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>Serie C</td>
-                            <td>-</td>
-                        </tr>
-                        <tr className=''>
-                            <td>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>SUB 23</td>
-                            <td>-</td>
-                        </tr>
-                        <tr className=''>
-                            <td>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>SUB 19</td>
-                            <td>-</td>
-                        </tr>
-                    </>
-                }
-            />
+            <Table data={dataCategorias} dataColumns={dataCategoriasColumns} arrayName={"Categorias"}/>
             {
                 isCreateModalOpen && <>
                     <ModalCreate initial={{ opacity: 0 }}

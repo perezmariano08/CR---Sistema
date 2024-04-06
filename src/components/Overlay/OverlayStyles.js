@@ -9,4 +9,5 @@ export const OverlayStyled = styled.div`
     background-color: #000;
     opacity: .5;
     z-index: 1;
+    cursor: pointer;
 `

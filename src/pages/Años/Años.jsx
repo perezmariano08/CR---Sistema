@@ -17,6 +17,7 @@ import { IoCheckmark, IoClose } from "react-icons/io5";
 import ModalDelete from '../../components/Modals/ModalDelete/ModalDelete';
 import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
 import Overlay from '../../components/Overlay/Overlay';
+import { dataAños, dataAñosColumns } from '../../Data/Años/DataAños';
 
 const Años = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -72,51 +73,7 @@ const Años = () => {
                     </Button>
                 </ActionsCrudButtons>
             </ActionsCrud>
-            <Table thead={
-                    <tr>
-                        <th className='th-ellipsis'></th>
-                        <th>
-                            <input className='checkbox' type="checkbox" name="" id="" />
-                        </th>
-                        <th>Año</th>
-                        <th>Descripcion</th>
-                    </tr>
-                }
-                tbody={
-                    <>
-                        <tr>
-                            <td className='th-ellipsis'>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>2024</td>
-                            <td>-</td>
-                        </tr>
-                        <tr className=''>
-                            <td>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>2023</td>
-                            <td>-</td>
-                        </tr>
-                        <tr className=''>
-                            <td>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>2022</td>
-                            <td>-</td>
-                        </tr>
-                    </>
-                }
-            />
+            <Table data={dataAños} dataColumns={dataAñosColumns} arrayName={"Años"}/>
             {
                 isCreateModalOpen && <>
                     <ModalCreate initial={{ opacity: 0 }}

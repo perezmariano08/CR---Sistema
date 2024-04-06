@@ -17,6 +17,8 @@ import { IoCheckmark, IoClose } from "react-icons/io5";
 import ModalDelete from '../../components/Modals/ModalDelete/ModalDelete';
 import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
 import Overlay from '../../components/Overlay/Overlay';
+import { dataTorneos, dataTorneosColumns } from '../../Data/Torneos/DataTorneos';
+import { dataCategoriasColumns } from '../../Data/Categorias/Categorias';
 
 const Torneos = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -72,41 +74,8 @@ const Torneos = () => {
                     </Button>
                 </ActionsCrudButtons>
             </ActionsCrud>
-            <Table thead={
-                    <tr>
-                        <th className='th-ellipsis'></th>
-                        <th>
-                            <input className='checkbox' type="checkbox" name="" id="" />
-                        </th>
-                        <th>Nombre</th>
-                        <th>Descripcion</th>
-                    </tr>
-                }
-                tbody={
-                    <>
-                        <tr>
-                            <td className='th-ellipsis'>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>Torneo Apertura</td>
-                            <td>-</td>
-                        </tr>
-                        <tr className=''>
-                            <td>
-                                <HiOutlineEllipsisVertical className='ellipsis'/>
-                            </td>
-                            <td>
-                                <input className='checkbox' type="checkbox" name="" id="" />
-                            </td>
-                            <td>Torneo Clausura</td>
-                            <td>-</td>
-                        </tr>
-                    </>
-                }
-            />
+            <Table data={dataTorneos} dataColumns={dataTorneosColumns} arrayName={"Torneos"}/>
+
             {
                 isCreateModalOpen && <>
                     <ModalCreate initial={{ opacity: 0 }}

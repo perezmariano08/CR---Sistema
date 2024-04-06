@@ -9,6 +9,7 @@ export const SelectContainerStyled = styled.div`
     font-size: 14px;
     gap: 5px;
     position: relative;
+    cursor: pointer;
     i, svg {
         position: absolute;
         right: 12px;
@@ -27,7 +28,15 @@ export const SelectWrapper = styled.select`
     -webkit-appearance: none; /* Para navegadores WebKit */
     -moz-appearance: none; /* Para navegadores Mozilla */
     z-index: 2;
-    option {
-    }
+    cursor: pointer;
 
+    option {
+        background-color: var(--gray-300);
+        color: var(--white);
+        cursor: pointer;
+        border: none;
+        &:disabled {
+            display: none;
+        }
+    }
 `

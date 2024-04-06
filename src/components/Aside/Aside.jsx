@@ -37,7 +37,7 @@ const Aside = ({className}) => {
             </AsideHeader>
             <Divider color="gray-300" />
             <AsideUser>
-                <img src={UserImg} alt="" srcset="" />
+                <img src={UserImg} alt="" />
                 <p>Octavio Pereyra</p>
             </AsideUser>
             <Divider color="gray-300" />
