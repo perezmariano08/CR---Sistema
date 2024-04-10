@@ -47,7 +47,6 @@ const Usuarios = () => {
     
     return (
         <Content>
-            <Button></Button>
             <ContentTitle>Usuarios</ContentTitle>
             <ActionsCrud>
                 <ActionsCrudButtons>

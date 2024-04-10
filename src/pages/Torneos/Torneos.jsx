@@ -19,10 +19,37 @@ import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
 import Overlay from '../../components/Overlay/Overlay';
 import { dataTorneos, dataTorneosColumns } from '../../Data/Torneos/DataTorneos';
 import { dataCategoriasColumns } from '../../Data/Categorias/Categorias';
+import Axios from 'axios';
 
 const Torneos = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [nombre, setNombre] = useState("");
+    const [descripcion, setDescripcion] = useState("");
+
+    const [torneosList, setTorneos] = useState([])
+    const add = () => {
+        if (nombre != "") {
+            Axios.post("193.203.175.58/crear-torneo", {
+                nombre,
+                descripcion
+            }).then(()=>{
+                alert("Torneo registrada")
+            })
+            closeCreateModal()
+            getTorneos()
+        } else {
+            alert("Completa los campos")
+        }
+    }
+
+    const getTorneos = () => {
+        Axios.get("https://srv1196.hstgr.io/torneos").then((response)=>{
+            setTorneos(response.data)
+        })
+    }
+    
+    getTorneos()
 
     const openCreateModal = () => {
         setIsCreateModalOpen(true);
@@ -74,7 +101,7 @@ const Torneos = () => {
                     </Button>
                 </ActionsCrudButtons>
             </ActionsCrud>
-            <Table data={dataTorneos} dataColumns={dataTorneosColumns} arrayName={"Torneos"}/>
+            <Table data={torneosList} dataColumns={dataTorneosColumns} arrayName={"Torneos"}/>
 
             {
                 isCreateModalOpen && <>
@@ -90,7 +117,7 @@ const Torneos = () => {
                                     <IoClose/>
                                     Cancelar
                                 </Button>
-                                <Button color={"success"} onClick={closeCreateModal}>
+                                <Button color={"success"} onClick={add}>
                                     <IoCheckmark/>
                                     Guardar
                                 </Button>
@@ -100,11 +127,14 @@ const Torneos = () => {
                             <>
                                 <ModalFormInputContainer>
                                     Nombre
-                                    <Input type='text' placeholder="Escriba aqui el nombre del torneo..." />
+                                    <Input type='text' placeholder="Escriba aqui el nombre del torneo..." 
+                                        onChange={(event) => { setNombre(event.target.value)}}
+                                    />
                                 </ModalFormInputContainer>
                                 <ModalFormInputContainer>
                                     Añadir descripción (Opcional)
-                                    <Input type='text' placeholder="Escriba aqui..." />
+                                    <Input type='text' placeholder="Escriba aqui..."
+                                    onChange={(event) => { setDescripcion(event.target.value)}} />
                                 </ModalFormInputContainer>
                             </>
                         }

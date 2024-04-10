@@ -18,10 +18,37 @@ import ModalDelete from '../../components/Modals/ModalDelete/ModalDelete';
 import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
 import Overlay from '../../components/Overlay/Overlay';
 import { dataAños, dataAñosColumns } from '../../Data/Años/DataAños';
+import Axios from 'axios';
 
 const Años = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+    const [año, setAño] = useState("");
+    const [descripcion, setDescripcion] = useState("");
+
+    const [añosList, setAños] = useState([])
+    const add = () => {
+        if (año != "") {
+            Axios.post("https://srv1196.hstgr.io/crear-anio", {
+                año,
+                descripcion
+            }).then(()=>{
+                alert("Año registrado")
+            })
+            closeCreateModal()
+            getAños()
+        } else {
+            alert("Completa los campos")
+        }
+    }
+
+    const getAños = () => {
+        Axios.get("https://srv1196.hstgr.io/anios").then((response)=>{
+            setAños(response.data)
+        })
+    }
+    getAños()
 
     const openCreateModal = () => {
         setIsCreateModalOpen(true);
@@ -73,7 +100,7 @@ const Años = () => {
                     </Button>
                 </ActionsCrudButtons>
             </ActionsCrud>
-            <Table data={dataAños} dataColumns={dataAñosColumns} arrayName={"Años"}/>
+            <Table data={añosList} dataColumns={dataAñosColumns} arrayName={"Años"}/>
             {
                 isCreateModalOpen && <>
                     <ModalCreate initial={{ opacity: 0 }}
@@ -88,7 +115,7 @@ const Años = () => {
                                     <IoClose/>
                                     Cancelar
                                 </Button>
-                                <Button color={"success"} onClick={closeCreateModal}>
+                                <Button color={"success"} onClick={add}>
                                     <IoCheckmark/>
                                     Guardar
                                 </Button>
@@ -98,11 +125,13 @@ const Años = () => {
                             <>
                                 <ModalFormInputContainer>
                                     Año
-                                    <Input type='text' placeholder="Escriba aqui el año..." />
+                                    <Input type='text' placeholder="Escriba aqui el año..." 
+                                    onChange={(event) => { setAño(event.target.value)}}/>
                                 </ModalFormInputContainer>
                                 <ModalFormInputContainer>
                                     Añadir descripción (Opcional)
-                                    <Input type='text' placeholder="Escriba aqui..." />
+                                    <Input type='text' placeholder="Escriba aqui..." 
+                                    onChange={(event) => { setDescripcion(event.target.value)}}/>
                                 </ModalFormInputContainer>
                             </>
                         }

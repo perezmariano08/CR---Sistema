@@ -18,11 +18,36 @@ import ModalDelete from '../../components/Modals/ModalDelete/ModalDelete';
 import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
 import Overlay from '../../components/Overlay/Overlay';
 import { dataSedes, dataSedesColumns } from '../../Data/Sedes/Sedes';
+import Axios from 'axios';
 
 const Sedes = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [nombre, setNombre] = useState("");
+    const [descripcion, setDescripcion] = useState("");
 
+    const [sedesList, setSedes] = useState([])
+    const add = () => {
+        if (nombre != "") {
+            Axios.post("https://srv1196.hstgr.io/crear-sede", {
+                nombre,
+                descripcion
+            }).then(()=>{
+                alert("Torneo registrada")
+            })
+            closeCreateModal()
+            getTorneos()
+        } else {
+            alert("Completa los campos")
+        }
+    }
+
+    const getSedes = () => {
+        Axios.get("https://srv1196.hstgr.io/sedes").then((response)=>{
+            setSedes(response.data)
+        })
+    }
+    getSedes()
     const openCreateModal = () => {
         setIsCreateModalOpen(true);
     };
@@ -73,7 +98,7 @@ const Sedes = () => {
                     </Button>
                 </ActionsCrudButtons>
             </ActionsCrud>
-            <Table data={dataSedes} dataColumns={dataSedesColumns} arrayName={"Sedes"}/>
+            <Table data={sedesList} dataColumns={dataSedesColumns} arrayName={"Sedes"}/>
             {
                 isCreateModalOpen && <>
                     <ModalCreate initial={{ opacity: 0 }}
@@ -88,7 +113,7 @@ const Sedes = () => {
                                     <IoClose/>
                                     Cancelar
                                 </Button>
-                                <Button color={"success"} onClick={closeCreateModal}>
+                                <Button color={"success"} onClick={add}>
                                     <IoCheckmark/>
                                     Guardar
                                 </Button>
@@ -98,11 +123,13 @@ const Sedes = () => {
                             <>
                                 <ModalFormInputContainer>
                                     Nombre
-                                    <Input type='text' placeholder="Escriba aqui el nombre de la sede..." />
+                                    <Input type='text' placeholder="Escriba aqui el nombre de la sede..." 
+                                    onChange={(event) => { setNombre(event.target.value)}}/>
                                 </ModalFormInputContainer>
                                 <ModalFormInputContainer>
                                     Añadir descripción (Opcional)
-                                    <Input type='text' placeholder="Escriba aqui..." />
+                                    <Input type='text' placeholder="Escriba aqui..." 
+                                    onChange={(event) => { setDescripcion(event.target.value)}}/>
                                 </ModalFormInputContainer>
                             </>
                         }

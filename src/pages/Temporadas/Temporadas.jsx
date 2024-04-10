@@ -21,10 +21,88 @@ import { dataTorneos } from '../../Data/Torneos/DataTorneos';
 import { dataAños } from '../../Data/Años/DataAños';
 import { dataCategorias } from '../../Data/Categorias/Categorias';
 import { dataTemporadas, dataTemporadasColumns } from '../../Data/Temporadas/Temporadas';
+import Axios from 'axios';
 
 const Temporadas = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+    // Torneos
+    const [torneo, setTorneo] = useState("");
+    const [categoria, setCategoria] = useState("");
+    const [año, setAño] = useState("");
+    const [sede, setSede] = useState("");
+    const [descripcion, setDescripcion] = useState("");
+
+    const add = () => {
+
+        if (
+            torneo != "" &&
+            categoria != "" &&
+            año != "" &&
+            sede != "" 
+        ) {
+            Axios.post("https://srv1196.hstgr.io/crear-temporada", {
+                torneo,
+                categoria,
+                año,
+                sede,
+                descripcion
+            }).then(()=>{
+                alert("Temporada registrada")
+            })
+            closeCreateModal()
+            getTemporadas()
+        } else {
+            alert("Completa los campos")
+        }
+    }
+
+    const [temporadasList, setTemporadas] = useState([])
+    const getTemporadas = () => {
+        Axios.get("https://srv1196.hstgr.io/temporadas").then((response)=>{
+            setTemporadas(response.data)
+        })
+    }
+    getTemporadas()
+
+    // Torneos
+    const [torneosList, setTorneos] = useState([])
+    const getTorneos = () => {
+        Axios.get("https://srv1196.hstgr.io/torneos").then((response)=>{
+            setTorneos(response.data)
+        })
+    }
+    getTorneos()
+
+    // Categorias
+    const [categoriasList, setCategorias] = useState([])
+    const getCategorias = () => {
+        Axios.get("https://srv1196.hstgr.io/categorias").then((response)=>{
+            setCategorias(response.data)
+        })
+    }
+    getCategorias()
+
+    // Sedes
+    const [sedesList, setSedes] = useState([])
+    const getSedes = () => {
+        Axios.get("https://srv1196.hstgr.io/sedes").then((response)=>{
+            setSedes(response.data)
+        })
+    }
+    getSedes()
+
+    //Años
+    const [añosList, setAños] = useState([])
+    const getAños = () => {
+        Axios.get("https://srv1196.hstgr.io/anios").then((response)=>{
+            setAños(response.data)
+        })
+    }
+    getAños()
+
+
 
     const openCreateModal = () => {
         setIsCreateModalOpen(true);
@@ -76,7 +154,7 @@ const Temporadas = () => {
                     </Button>
                 </ActionsCrudButtons>
             </ActionsCrud>
-            <Table data={dataTemporadas} dataColumns={dataTemporadasColumns} arrayName={"Temporadas"}/>
+            <Table data={temporadasList} dataColumns={dataTemporadasColumns} arrayName={"Temporadas"}/>
             {
                 isCreateModalOpen && <>
                     <ModalCreate initial={{ opacity: 0 }}
@@ -91,7 +169,7 @@ const Temporadas = () => {
                                     <IoClose/>
                                     Cancelar
                                 </Button>
-                                <Button color={"success"} onClick={closeCreateModal}>
+                                <Button color={"success"} onClick={add}>
                                     <IoCheckmark/>
                                     Guardar
                                 </Button>
@@ -102,31 +180,48 @@ const Temporadas = () => {
                                 <ModalFormInputContainer>
                                     Torneo
                                     <Select
-                                        data={dataTorneos}
+                                        data={torneosList}
                                         placeholder="Seleccionar torneo"
+                                        onChange={(event) => { setTorneo(event.target.value)}}
+                                        id_={"id_torneo"}
                                     >
                                     </Select>
                                 </ModalFormInputContainer>
                                 <ModalFormInputContainer>
                                     Categoría
                                     <Select
-                                        data={dataCategorias}
+                                        data={categoriasList}
                                         placeholder="Seleccionar categoria"
+                                        onChange={(event) => { setCategoria(event.target.value)}}
+                                        id_={"id_categoria"}
                                     >
                                     </Select>
                                 </ModalFormInputContainer>
                                 <ModalFormInputContainer>
                                     Año
                                     <Select 
-                                        data={dataAños}
+                                        data={añosList}
                                         column={"año"}
                                         placeholder="Seleccionar año"
+                                        onChange={(event) => { setAño(event.target.value)}}
+                                        id_={"id_año"}
+                                    >
+                                    </Select>
+                                </ModalFormInputContainer>
+                                <ModalFormInputContainer>
+                                    Sede
+                                    <Select 
+                                        data={sedesList}
+                                        placeholder="Seleccionar sede"
+                                        onChange={(event) => { setSede(event.target.value)}}
+                                        id_={"id_sede"}
                                     >
                                     </Select>
                                 </ModalFormInputContainer>
                                 <ModalFormInputContainer>
                                     Añadir descripción (Opcional)
-                                    <Input type='text' placeholder="Escriba aqui..." />
+                                    <Input type='text' placeholder="Escriba aqui..."
+                                    onChange={(event) => { setDescripcion(event.target.value)}} />
                                 </ModalFormInputContainer>
                             </>
                         }

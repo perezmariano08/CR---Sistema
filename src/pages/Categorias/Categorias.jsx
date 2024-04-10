@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Content from '../../components/Content/Content';
 import ActionsCrud from '../../components/ActionsCrud/ActionsCrud';
 import { ActionsCrudButtons } from '../../components/ActionsCrud/ActionsCrudStyles';
@@ -11,17 +11,48 @@ import Table from '../../components/Table/Table';
 import { ContentTitle } from '../../components/Content/ContentStyles';
 import ModalCreate from '../../components/Modals/ModalCreate/ModalCreate';
 import { ModalFormInputContainer } from '../../components/Modals/ModalsStyles';
-import Select from '../../components/Select/Select';
 import Input from '../../components/Input/Input';
 import { IoCheckmark, IoClose } from "react-icons/io5";
 import ModalDelete from '../../components/Modals/ModalDelete/ModalDelete';
-import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
 import Overlay from '../../components/Overlay/Overlay';
-import { dataCategorias, dataCategoriasColumns } from '../../Data/Categorias/Categorias';
+import { dataCategoriasColumns } from '../../Data/Categorias/Categorias';
 
 const Categorias = () => {
+    
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+    const [nombre, setCategoria] = useState("");
+    const [descripcion, setDescripcion] = useState("");
+
+    const [categoriasList, setCategorias] = useState([])
+
+   
+
+    const getCategorias =  () => {
+        axios.get("https://api-cr.vercel.app/categorias")
+        .then((response)=>{
+            setCategorias(response.data)
+        })
+        .catch((error) => {
+            console.error("Error en la solicitud HTTP:", error);
+        });
+    }
+
+    const add = () => {
+        if (nombre !== "") {
+            axios.post("https://api-cr.vercel.app/crear-categoria", {
+                nombre,
+                descripcion
+            }).then(()=>{
+                alert("Categoria registrada")
+            })
+            closeCreateModal()
+            getCategorias
+        } else {
+            alert("Completa los campos")
+        }
+    }
 
     const openCreateModal = () => {
         setIsCreateModalOpen(true);
@@ -44,7 +75,9 @@ const Categorias = () => {
         console.log('Selected file:', file);
         // Aquí puedes manejar la lógica para leer el archivo CSV
     };
-    
+
+        
+    getCategorias()
     return (
         <Content>
             <ContentTitle>Categorias</ContentTitle>
@@ -73,7 +106,7 @@ const Categorias = () => {
                     </Button>
                 </ActionsCrudButtons>
             </ActionsCrud>
-            <Table data={dataCategorias} dataColumns={dataCategoriasColumns} arrayName={"Categorias"}/>
+            <Table data={categoriasList} dataColumns={dataCategoriasColumns} arrayName={"Categorias"}/>
             {
                 isCreateModalOpen && <>
                     <ModalCreate initial={{ opacity: 0 }}
@@ -88,7 +121,7 @@ const Categorias = () => {
                                     <IoClose/>
                                     Cancelar
                                 </Button>
-                                <Button color={"success"} onClick={closeCreateModal}>
+                                <Button color={"success"} onClick={add}>
                                     <IoCheckmark/>
                                     Guardar
                                 </Button>
@@ -98,11 +131,17 @@ const Categorias = () => {
                             <>
                                 <ModalFormInputContainer>
                                     Nombre
-                                    <Input type='text' placeholder="Escriba aqui el nombre de la categoría..." />
+                                    <Input 
+                                        onChange={(event) => { setCategoria(event.target.value)}} 
+                                        type='text' 
+                                        placeholder="Escriba aqui el nombre de la categoría..." />
                                 </ModalFormInputContainer>
                                 <ModalFormInputContainer>
-                                    Añadir descripción (Opcional)
-                                    <Input type='text' placeholder="Escriba aqui..." />
+                                    Descripcion
+                                    <Input 
+                                        onChange={(event) => { setDescripcion(event.target.value)}} 
+                                        type='text' 
+                                        placeholder="Escriba aqui..." />
                                 </ModalFormInputContainer>
                             </>
                         }

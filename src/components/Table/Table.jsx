@@ -17,7 +17,7 @@ const Table = ({data, dataColumns, arrayName}) => {
         </div>
     );
 
-    const dataAvalaible = data.length > 1
+    const dataAvalaible = data.length > 0
 
     return (
         <>
@@ -47,9 +47,6 @@ const Table = ({data, dataColumns, arrayName}) => {
                         />
                     ))}
                     </TableContainerStyled>
-            }
-            {
-                !dataAvalaible && "No hay datos."
             }
         </>
     );

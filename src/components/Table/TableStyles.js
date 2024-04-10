@@ -10,12 +10,14 @@ export const TableContainerStyled = styled(DataTable)`
     height: fit-content;
     font-size: 14px;
 
+
     td, th {
         text-align: left;
         overflow: hidden; /* Oculta el contenido que desborda */
         text-overflow: ellipsis; /* Muestra puntos suspensivos si el contenido desborda */
         padding: 15px 20px; /* Espaciado interno de las celdas */
         min-width: fit-content;
+        
     }
     th {
         color: var(--gray-200);
@@ -34,7 +36,7 @@ export const TableContainerStyled = styled(DataTable)`
         padding: 15px 20px;
         width: fit-content;
         height: 100%;
-        
+        border-bottom: 1px solid var(--gray-200);
     }
     tbody tr {
         border-bottom: 1px solid var(--gray-200) !important;
