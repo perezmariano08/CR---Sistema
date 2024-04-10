@@ -19,6 +19,7 @@ import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
 import Overlay from '../../components/Overlay/Overlay';
 import { dataSedes, dataSedesColumns } from '../../Data/Sedes/Sedes';
 import Axios from 'axios';
+import { URL } from '../../utils/utils';
 
 const Sedes = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -29,7 +30,7 @@ const Sedes = () => {
     const [sedesList, setSedes] = useState([])
     const add = () => {
         if (nombre != "") {
-            Axios.post("https://srv1196.hstgr.io/crear-sede", {
+            Axios.post(`${URL}/crear-sede`, {
                 nombre,
                 descripcion
             }).then(()=>{
@@ -43,7 +44,7 @@ const Sedes = () => {
     }
 
     const getSedes = () => {
-        Axios.get("https://srv1196.hstgr.io/sedes").then((response)=>{
+        Axios.get(`${URL}/sedes`).then((response)=>{
             setSedes(response.data)
         })
     }

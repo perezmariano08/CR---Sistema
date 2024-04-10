@@ -20,6 +20,7 @@ import Overlay from '../../components/Overlay/Overlay';
 import { dataTorneos, dataTorneosColumns } from '../../Data/Torneos/DataTorneos';
 import { dataCategoriasColumns } from '../../Data/Categorias/Categorias';
 import Axios from 'axios';
+import { URL } from '../../utils/utils';
 
 const Torneos = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -30,7 +31,7 @@ const Torneos = () => {
     const [torneosList, setTorneos] = useState([])
     const add = () => {
         if (nombre != "") {
-            Axios.post("193.203.175.58/crear-torneo", {
+            Axios.post(`${URL}/crear-torneo`, {
                 nombre,
                 descripcion
             }).then(()=>{
@@ -44,7 +45,7 @@ const Torneos = () => {
     }
 
     const getTorneos = () => {
-        Axios.get("https://srv1196.hstgr.io/torneos").then((response)=>{
+        Axios.get(`${URL}/torneos`).then((response)=>{
             setTorneos(response.data)
         })
     }

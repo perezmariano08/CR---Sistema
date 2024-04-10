@@ -22,6 +22,7 @@ import { dataAños } from '../../Data/Años/DataAños';
 import { dataCategorias } from '../../Data/Categorias/Categorias';
 import { dataTemporadas, dataTemporadasColumns } from '../../Data/Temporadas/Temporadas';
 import Axios from 'axios';
+import { URL } from '../../utils/utils';
 
 const Temporadas = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -42,7 +43,7 @@ const Temporadas = () => {
             año != "" &&
             sede != "" 
         ) {
-            Axios.post("https://srv1196.hstgr.io/crear-temporada", {
+            Axios.post(`${URL}/crear-temporada`, {
                 torneo,
                 categoria,
                 año,
@@ -60,7 +61,7 @@ const Temporadas = () => {
 
     const [temporadasList, setTemporadas] = useState([])
     const getTemporadas = () => {
-        Axios.get("https://srv1196.hstgr.io/temporadas").then((response)=>{
+        Axios.get(`${URL}/temporadas`).then((response)=>{
             setTemporadas(response.data)
         })
     }
@@ -69,7 +70,7 @@ const Temporadas = () => {
     // Torneos
     const [torneosList, setTorneos] = useState([])
     const getTorneos = () => {
-        Axios.get("https://srv1196.hstgr.io/torneos").then((response)=>{
+        Axios.get(`${URL}/torneos`).then((response)=>{
             setTorneos(response.data)
         })
     }
@@ -78,7 +79,7 @@ const Temporadas = () => {
     // Categorias
     const [categoriasList, setCategorias] = useState([])
     const getCategorias = () => {
-        Axios.get("https://srv1196.hstgr.io/categorias").then((response)=>{
+        Axios.get(`${URL}/categorias`).then((response)=>{
             setCategorias(response.data)
         })
     }
@@ -87,7 +88,7 @@ const Temporadas = () => {
     // Sedes
     const [sedesList, setSedes] = useState([])
     const getSedes = () => {
-        Axios.get("https://srv1196.hstgr.io/sedes").then((response)=>{
+        Axios.get(`${URL}/sedes`).then((response)=>{
             setSedes(response.data)
         })
     }
@@ -96,7 +97,7 @@ const Temporadas = () => {
     //Años
     const [añosList, setAños] = useState([])
     const getAños = () => {
-        Axios.get("https://srv1196.hstgr.io/anios").then((response)=>{
+        Axios.get(`${URL}/anios`).then((response)=>{
             setAños(response.data)
         })
     }

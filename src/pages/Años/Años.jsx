@@ -19,6 +19,7 @@ import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
 import Overlay from '../../components/Overlay/Overlay';
 import { dataAños, dataAñosColumns } from '../../Data/Años/DataAños';
 import Axios from 'axios';
+import { URL } from '../../utils/utils';
 
 const Años = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -30,7 +31,7 @@ const Años = () => {
     const [añosList, setAños] = useState([])
     const add = () => {
         if (año != "") {
-            Axios.post("https://srv1196.hstgr.io/crear-anio", {
+            Axios.post(`${URL}/crear-anio`, {
                 año,
                 descripcion
             }).then(()=>{
@@ -44,7 +45,7 @@ const Años = () => {
     }
 
     const getAños = () => {
-        Axios.get("https://srv1196.hstgr.io/anios").then((response)=>{
+        Axios.get(`${URL}/anios`).then((response)=>{
             setAños(response.data)
         })
     }
