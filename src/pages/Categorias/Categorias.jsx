@@ -30,7 +30,7 @@ const Categorias = () => {
    
 
     const getCategorias =  () => {
-        axios.get("https://api-cr.vercel.app/categorias")
+        axios.get(`${URL}/categorias`)
         .then((response)=>{
             setCategorias(response.data)
         })
@@ -41,7 +41,7 @@ const Categorias = () => {
 
     const add = () => {
         if (nombre !== "") {
-            axios.post("https://api-cr.vercel.app/crear-categoria", {
+            axios.post(`${URL}/crear-categoria`, {
                 nombre,
                 descripcion
             }).then(()=>{
