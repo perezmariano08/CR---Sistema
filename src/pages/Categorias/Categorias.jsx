@@ -16,6 +16,7 @@ import { IoCheckmark, IoClose } from "react-icons/io5";
 import ModalDelete from '../../components/Modals/ModalDelete/ModalDelete';
 import Overlay from '../../components/Overlay/Overlay';
 import { dataCategoriasColumns } from '../../Data/Categorias/Categorias';
+import { URL } from '../../utils/utils';
 
 const Categorias = () => {
     
