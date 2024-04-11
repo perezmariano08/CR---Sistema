@@ -1,16 +1,11 @@
 import React from 'react'
 import { LayoutContainerStyled } from './LayoutStyles'
-import Aside from '../Aside/Aside'
 
-const Layout = ({children, className}) => {
+const Layout = ({children}) => {
     return (
-        <>
-            <Aside className={className}/>
-            <LayoutContainerStyled>
-                {children}
-            </LayoutContainerStyled>
-        </>
-        
+        <LayoutContainerStyled>
+            {children}
+        </LayoutContainerStyled>
     )
 }
 
