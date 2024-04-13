@@ -5,13 +5,17 @@ const Button = ({
     to,
     background = 'green',
     border = 'green',
+    color = "black",
     children }) => {
     return (
         <ButtonWrapper
+            whileTap={{scale: .95}}
             to={to}
             background={background}
             border={border}
-            >{children}
+            color={color}
+        >
+            {children}
         </ButtonWrapper>
     )
 }

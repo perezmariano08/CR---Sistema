@@ -13,6 +13,7 @@ export const StatsHeadContainer = styled.div`
     align-items: center;
     justify-content: center;
     gap: 15px;
+    width: 100%;
 `
 export const StatsFilter = styled.div`
     display: flex;

@@ -5,35 +5,34 @@ import Button from '../../components/UI/Button/Button'
 import { NavLink } from 'react-router-dom'
 import Input from '../../components/UI/Input/Input'
 import { HiKey, HiUser } from 'react-icons/hi2'
-import InputPassword from '../../components/UI/Input/InputPassword'
+import { AiOutlineUser, AiOutlineLock  } from "react-icons/ai";
+import { PiIdentificationCardLight } from 'react-icons/pi'
 
 const Login = () => {
+
     return (
         <LoginContainerStyled>
             <LoginWrapperUp>
-                <img src={IsotipoCR} alt="" srcset="" />
+                <img src={IsotipoCR} />
             </LoginWrapperUp>
             <LoginWrapperDown>
                 <LoginDataContainer>
                     <LoginDataWrapper>
                         <h1>¡Bienvenido!</h1>
                         <LoginDataInputs>
-                            <Input placeholder='DNI'>
-                                <HiUser/>
+                            <Input icon={<PiIdentificationCardLight className='icon-input error'/>} placeholder='DNI' name={'dni'} id={'dni'} inputMode={'numeric'}>
                             </Input>
-                            <InputPassword placeholder='Contraseña'>
-                                <HiKey/>
-                            </InputPassword>
+                            <Input type='password' placeholder='Contraseña' name={'contraseña'} id={'contraseña'} icon={<AiOutlineLock className='icon-input'/>}>
+                            </Input>
                         </LoginDataInputs>
                         <LoginDataPassword>
                             <NavLink>¿Olvidaste tu contraseña?</NavLink>
                         </LoginDataPassword>
                     </LoginDataWrapper>
                     <Button to={'/'}>Iniciar Sesion</Button>
-                </LoginDataContainer>
-                <p>¿No tienes cuenta? <NavLink to={'/create-account'}>Crea tu cuenta</NavLink></p>
+                    <p>¿No tienes cuenta? <NavLink to={'/create-account'}>Registrate</NavLink></p>
+                </LoginDataContainer> 
             </LoginWrapperDown>
-
         </LoginContainerStyled>
     )
 }

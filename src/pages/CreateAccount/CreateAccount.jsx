@@ -5,34 +5,90 @@ import { HiCalendar, HiKey, HiOutlineCreditCard, HiUser, HiPhone, HiEnvelope, Hi
 import Button from '../../components/UI/Button/Button'
 import { NavLink } from 'react-router-dom'
 import InputPassword from '../../components/UI/Input/InputPassword'
-import Select from '../../components/UI/Select/Select'
+import Select from '../../components/Select/Select'
+import { dataEquipos } from '../../Data/Equipos/DataEquipos'
+
+import { Calendar } from 'primereact/calendar';
+import InputCalendar from '../../components/UI/Input/InputCalendar'
+import { AiOutlineMail, AiOutlineMobile, AiOutlineRedEnvelope, AiOutlineUser } from 'react-icons/ai'
+import { PiIdentificationCardLight } from "react-icons/pi";
+import { useFormik } from 'formik'
+import { ButtonSubmit } from '../../components/UI/Button/ButtonStyles'
 
 const CreateAccount = () => {
+
+    const {values, handleChange, handleSubmit} = useFormik({
+        initialValues: {
+            dni: '',
+            nombre: '',
+            apellido: '',
+            fechaNacimiento: '',
+            telefono: '',
+            email: ''
+        },
+        onSubmit: (values, {resetForm}) => {
+            console.log(values);
+            resetForm()
+        }
+    })
+
     return (
         <CreateAccountContainerStyled>
             <CreateAccountWrapper>
                 <CreateAccountData>
                     <h2>Creá tu cuenta</h2>
                     <CreateAccountInputs>
-                        <Input placeholder={'DNI'}><HiOutlineCreditCard/></Input>
-                        <Input placeholder={'Nombre'}><HiUser/></Input>
-                        <Input placeholder={'Apellido'}><HiUser/></Input>
-                        <Input type="date" placeholder={'Fecha de nacimiento'}><HiCalendar/></Input>
-                        <Input placeholder={'Telefono'}><HiPhone/></Input>
-                        <Input type="email" placeholder={'Email'}><HiEnvelope/></Input>
-                        <Select>
-                            <HiOutlineShieldCheck/>
-                        </Select>
-                        <InputPassword placeholder='Contraseña'>
-                            <HiKey/>
-                        </InputPassword>
-                        <InputPassword placeholder='Confirmar contraseña'>
-                            <HiKey/>
-                        </InputPassword>
+                        <Input 
+                            onChange={handleChange} 
+                            value={values.dni} 
+                            icon={<PiIdentificationCardLight className='icon-input'/>} 
+                            placeholder={'DNI'} 
+                            name={'dni'} 
+                            id={'dni'} 
+                            inputMode={'numeric'}
+                        />
+                        <Input 
+                            onChange={handleChange} 
+                            value={values.nombre} 
+                            icon={<AiOutlineUser className='icon-input'/>} 
+                            placeholder={'Nombre'} 
+                            name={'nombre'} 
+                            id={'nombre'}
+                        />
+                        <Input 
+                            onChange={handleChange} 
+                            value={values.apellido} 
+                            icon={<AiOutlineUser className='icon-input'/>} 
+                            placeholder={'Apellido'} 
+                            name={'apellido'} 
+                            id={'apellido'}
+                        />
+                        <InputCalendar 
+                            onChange={handleChange} 
+                            value={values.fechaNacimiento} 
+                            placeholder={"Fecha de nacimiento"} 
+                            name={'fechaNacimiento'} 
+                            id={'fechaNacimiento'}
+                        />
+                        <Input 
+                            onChange={handleChange} 
+                            value={values.telefono} 
+                            icon={<AiOutlineMobile className='icon-input'/>} 
+                            placeholder={'Telefono'} 
+                            name={'telefono'} id={'telefono'} 
+                            inputMode={'numeric'}
+                        />
+                        <Input 
+                            onChange={handleChange} 
+                            value={values.email} 
+                            icon={<AiOutlineMail className='icon-input'/>} 
+                            type="email" placeholder={'Email'} 
+                            name={'email'} 
+                            id={'email'}
+                        />
                     </CreateAccountInputs>
-                    <Button>Crear cuenta</Button>
+                    <ButtonSubmit onClick={handleSubmit}>Continuar</ButtonSubmit>
                 </CreateAccountData>
-                
                 <p>¿Ya tienes cuenta? <NavLink to={'/login'}>Inicia Sesion</NavLink></p>
             </CreateAccountWrapper>
         </CreateAccountContainerStyled>

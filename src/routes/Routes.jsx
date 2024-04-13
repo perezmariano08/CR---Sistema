@@ -17,7 +17,7 @@ import Sedes from '../pages/Administrador/Sedes/Sedes'
 import Usuarios from '../pages/Administrador/Usuarios/Usuarios'
 import Jugadores from '../pages/Administrador/Jugadores/Jugadores'
 import HomePlanillero from '../pages/Planillero/HomePlanillero/HomePlanillero'
-import Layout from '../components/Layout/LayoutAdmin'
+import Layout from '../components/Layout/Layout'
 import Onboarding from '../pages/Onboarding/Onboarding'
 import Home from '../pages/Home/Home'
 import Login from '../pages/Login/Login'
@@ -29,6 +29,8 @@ import News from '../pages/News/News'
 import More from '../pages/More/More'
 import LayoutAux from '../components/LayoutAux/LayoutAux'
 import Planilla from '../pages/Planillero/Planilla/Planilla'
+import Step2 from '../pages/CreateAccount/Step2'
+import Step3 from '../pages/CreateAccount/Step3'
 
 const Routes = () => {
     return (
@@ -39,6 +41,8 @@ const Routes = () => {
                 <Route path='/onboarding' element={<Layout> <Onboarding/> </Layout>} />
                 <Route path='/login' element={<Layout> <Login/> </Layout>  }/>
                 <Route path='/create-account' element={<Layout> <CreateAccount/> </Layout>  }/>
+                <Route path='/create-password' element={<Layout> <Step2/> </Layout>  }/>
+                <Route path='/favorite-team' element={<Layout> <Step3/> </Layout>  }/>
                 <Route path='/my-team' element={ <LayoutPrivate> <MyTeam/> </LayoutPrivate>  }/>
                 <Route path='/stats' element={<LayoutPrivate> <Stats/> </LayoutPrivate>  }/>
                 <Route path='/news' element={<LayoutPrivate> <News/> </LayoutPrivate>  }/>

@@ -2,11 +2,15 @@ import React from 'react'
 import { InputContainerStyled, InputWrapper } from './InputSyles'
 import { HiEye } from 'react-icons/hi2'
 
-const InputPassword = ({children, placeholder}) => {
+const InputPassword = ({children, placeholder, id, name}) => {
     return (
         <InputContainerStyled>
-            {children}
-            <InputWrapper type="password" placeholder={placeholder}></InputWrapper>
+            <InputWrapper 
+                type="password" 
+                placeholder={placeholder} 
+                id={id}
+                name={name}>
+            </InputWrapper>
             <HiEye/>
         </InputContainerStyled>
     )

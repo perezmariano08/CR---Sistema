@@ -10,18 +10,25 @@ export const SelectContainerStyled = styled.div`
     gap: 5px;
     position: relative;
     cursor: pointer;
-    i, svg {
+    .arrow {
         position: absolute;
         right: 12px;
         color: var(--gray-200);
     }
+
+    .icon-select {
+        position: absolute;
+        left: 12px;
+        color: var(--gray-200);
+    }
 `
 export const SelectWrapper = styled.select`
+    min-width: 200px;
     width: 100%;
     background-color: transparent;
     color: var(--gray-200);
     height: 100%;
-    padding: 10px;
+    padding: 10px 10px 10px 34px;
     border: none;
     outline: none;
     appearance: none; /* Oculta el estilo por defecto del select */

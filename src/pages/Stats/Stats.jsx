@@ -1,8 +1,10 @@
 import React from 'react'
 import { StatsContainerStyled, StatsFilter, StatsFilterButton, StatsHeadContainer, StatsWrapper } from './StatsStyles'
-import Select  from "../../components/UI/Select/Select"
 import Table from "../../components/Stats/Table/Table"
 import Fixture from '../../components/Stats/Fixture/Fixture'
+import { dataEquipos } from '../../Data/Equipos/DataEquipos'
+import { IoShieldHalf } from 'react-icons/io5'
+import Select from '../../components/Select/Select'
 
 const Stats = () => {
     return (
@@ -10,8 +12,7 @@ const Stats = () => {
             <StatsWrapper className='wrapper'>
 
                 <StatsHeadContainer>
-                    <Select>
-                        
+                    <Select data={dataEquipos} placeholder={'Seleccionar equipo'} icon={<IoShieldHalf className='icon-select' />}>
                     </Select>
                     <StatsFilter>
 

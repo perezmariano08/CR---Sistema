@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const LoginContainerStyled = styled.div`
     height: 100vh;
     position: relative;
+    width: 100%;
+
 `
 export const LoginWrapperUp = styled.div`
     display: flex;
@@ -44,17 +46,22 @@ export const LoginWrapperDown = styled.div`
     width: 100%;
     padding: 30px;
     border-radius: 30px 30px 0 0;
-
-    p a {
-        font-weight: 400;
-        color: var(--green)
-    }
 `
 export const LoginDataContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 50px;
+
+    p {
+        text-align: center;
+        font-weight: 300;
+
+        a {
+            color: var(--green);
+            font-weight: 500;
+        }
+    }
 `
 
 export const LoginDataWrapper = styled.div`
@@ -78,7 +85,7 @@ export const LoginDataPassword = styled.div`
     justify-content: end;
 
     a {
-        font-weight: 400;
+        font-weight: 300;
         color: var(--white)
     }
 `

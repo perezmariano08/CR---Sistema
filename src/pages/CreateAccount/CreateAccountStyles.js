@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const CreateAccountContainerStyled = styled.div`
     padding: 30px;
     height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
 `

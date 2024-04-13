@@ -33,6 +33,7 @@ export const GlobalStyles = createGlobalStyle`
         color: var(--white);
     }
 
+
     * {
         margin: 0;
         padding: 0;
@@ -133,5 +134,135 @@ export const GlobalStyles = createGlobalStyle`
             gap: 10px;
         }
         
+    }
+
+
+    .p-datepicker {
+        background-color: var(--gray-300);
+        padding: 10px;
+        position: absolute;
+        z-index: 1001;
+        transform-origin: center bottom;
+        border: 0 none;
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        .p-datepicker-group-container {
+
+        .p-datepicker-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .p-datepicker-header {
+                padding: 0.5rem;
+                color: #4b5563;
+                font-weight: 600;
+                margin: 0;
+                border-bottom: 1px solid var(--gray-200);
+                border-top-right-radius: 6px;
+                border-top-left-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .p-datepicker-prev, .p-datepicker .p-datepicker-header .p-datepicker-next {
+                    width: 2rem;
+                    height: 2rem;
+                    color: var(--gray-200);
+                    border: 0 none;
+                    background: transparent;
+                    border-radius: 50%;
+                    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+                }
+
+                .p-datepicker-prev, .p-datepicker-next {
+                    cursor: pointer;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: hidden;
+                    position: relative;
+                }
+
+                .p-datepicker-title {
+                    margin: 0 auto;
+                    .p-datepicker-year, .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month {
+                        color: var(--white);
+                        transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+                        font-weight: 600;
+                        padding: 0.5rem;
+                    }
+                    .p-datepicker-month {
+                        color: var(--gray-200);
+                        transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+                        font-weight: 600;
+                        padding: 0.5rem;
+                        text-transform: uppercase;
+                    }
+                }
+
+                .p-datepicker-next {
+                    width: 2rem;
+                    height: 2rem;
+                    color: var(--gray-200);
+                    border: 0 none;
+                    background: transparent;
+                    border-radius: 50%;
+                    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+                }
+
+                .p-datepicker-decade {
+                    span {
+                        color: var(--gray-200);
+                    }
+                }
+            }
+
+            .p-datepicker-calendar-container {
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+
+                    th {
+                        padding: .5rem;
+
+                        span {
+                            font-weight: 600;
+                            color: var(--green);
+                        }
+                    }
+
+                    td {
+                        padding: 0.5rem;
+                    }
+
+                    .p-datepicker-other-month {
+                        color: var(--gray-200);
+                        span {
+                            font-weight: 200;
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+        .p-monthpicker {
+            margin: 0.5rem 0;
+            .p-monthpicker-month {
+                padding: 0.5rem;
+                transition: box-shadow 0.2s;
+                border-radius: 6px;
+            }
+        }
+
+        .p-yearpicker {
+            margin: 0.5rem 0;
+            .p-yearpicker-year {
+                padding: 0.5rem;
+                transition: box-shadow 0.2s;
+                border-radius: 6px;
+            }
+        }
     }
 `
