@@ -40,7 +40,7 @@ export const CreateAccountData = styled.div`
     }
 `
 
-export const CreateAccountInputs = styled.div`
+export const CreateAccountInputs = styled.form`
     display: flex;
     flex-direction: column;
     gap: 10px;

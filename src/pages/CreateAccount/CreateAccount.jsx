@@ -1,23 +1,36 @@
 import React from 'react'
 import { CreateAccountContainerStyled, CreateAccountData, CreateAccountInputs, CreateAccountWrapper } from './CreateAccountStyles'
 import Input from '../../components/UI/Input/Input'
-import { HiCalendar, HiKey, HiOutlineCreditCard, HiUser, HiPhone, HiEnvelope, HiOutlineShieldCheck } from 'react-icons/hi2'
-import Button from '../../components/UI/Button/Button'
 import { NavLink } from 'react-router-dom'
-import InputPassword from '../../components/UI/Input/InputPassword'
-import Select from '../../components/Select/Select'
-import { dataEquipos } from '../../Data/Equipos/DataEquipos'
-
-import { Calendar } from 'primereact/calendar';
 import InputCalendar from '../../components/UI/Input/InputCalendar'
 import { AiOutlineMail, AiOutlineMobile, AiOutlineRedEnvelope, AiOutlineUser } from 'react-icons/ai'
 import { PiIdentificationCardLight } from "react-icons/pi";
-import { useFormik } from 'formik'
+import { useFormik} from 'formik'
 import { ButtonSubmit } from '../../components/UI/Button/ButtonStyles'
+import * as Yup from 'yup'
 
 const CreateAccount = () => {
 
-    const {values, handleChange, handleSubmit} = useFormik({
+    const regexDni = /\d{6}$/;
+    const regexPhone = /\d{9}$/;
+
+    const validationSchema = Yup.object({
+        dni: Yup.string()
+        .matches(regexDni, "Minimo de 6 caracteres")
+        .trim()
+        .required("Este campo es requerido"),
+        nombre: Yup.string().trim().required("Este campo es requerido"),
+        apellido: Yup.string().trim().required("Este campo es requerido"),
+        fechaNacimiento: Yup.date().required("Este campo es requerido"),
+        telefono: Yup.string()
+        .matches(regexPhone, "Minimo de 10 caracteres")
+        .trim().required("Este campo es requerido"),
+        email: Yup.string()
+        .email("Correo electronico invalido")
+        .trim().required("Este campo es requerido"),
+        
+    })
+    const { getFieldProps, handleSubmit, errors, touched} = useFormik({
         initialValues: {
             dni: '',
             nombre: '',
@@ -26,6 +39,7 @@ const CreateAccount = () => {
             telefono: '',
             email: ''
         },
+        validationSchema,
         onSubmit: (values, {resetForm}) => {
             console.log(values);
             resetForm()
@@ -38,53 +52,54 @@ const CreateAccount = () => {
                 <CreateAccountData>
                     <h2>Creá tu cuenta</h2>
                     <CreateAccountInputs>
-                        <Input 
-                            onChange={handleChange} 
-                            value={values.dni} 
+                        <Input
+                            isError={errors.dni && touched.dni}
                             icon={<PiIdentificationCardLight className='icon-input'/>} 
                             placeholder={'DNI'} 
                             name={'dni'} 
                             id={'dni'} 
                             inputMode={'numeric'}
+                            {...getFieldProps('dni')}
                         />
-                        <Input 
-                            onChange={handleChange} 
-                            value={values.nombre} 
+                        <Input
+                            isError={errors.nombre && touched.nombre} 
                             icon={<AiOutlineUser className='icon-input'/>} 
                             placeholder={'Nombre'} 
                             name={'nombre'} 
                             id={'nombre'}
+                            {...getFieldProps('nombre')}
                         />
-                        <Input 
-                            onChange={handleChange} 
-                            value={values.apellido} 
+                        <Input
+                            isError={errors.apellido && touched.apellido}
                             icon={<AiOutlineUser className='icon-input'/>} 
                             placeholder={'Apellido'} 
                             name={'apellido'} 
                             id={'apellido'}
+                            {...getFieldProps('apellido')}
                         />
-                        <InputCalendar 
-                            onChange={handleChange} 
-                            value={values.fechaNacimiento} 
+                        <InputCalendar
+                            isError={errors.fechaNacimiento && touched.fechaNacimiento}
                             placeholder={"Fecha de nacimiento"} 
                             name={'fechaNacimiento'} 
                             id={'fechaNacimiento'}
+                            {...getFieldProps('fechaNacimiento')}
                         />
-                        <Input 
-                            onChange={handleChange} 
-                            value={values.telefono} 
+                        <Input
+                            isError={errors.telefono && touched.telefono} 
                             icon={<AiOutlineMobile className='icon-input'/>} 
                             placeholder={'Telefono'} 
-                            name={'telefono'} id={'telefono'} 
+                            name={'telefono'} 
+                            id={'telefono'} 
                             inputMode={'numeric'}
+                            {...getFieldProps('telefono')}
                         />
-                        <Input 
-                            onChange={handleChange} 
-                            value={values.email} 
+                        <Input
+                            isError={errors.email && touched.email}
                             icon={<AiOutlineMail className='icon-input'/>} 
                             type="email" placeholder={'Email'} 
                             name={'email'} 
                             id={'email'}
+                            {...getFieldProps('email')}
                         />
                     </CreateAccountInputs>
                     <ButtonSubmit onClick={handleSubmit}>Continuar</ButtonSubmit>
