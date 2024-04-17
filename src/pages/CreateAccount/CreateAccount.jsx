@@ -8,8 +8,11 @@ import { PiIdentificationCardLight } from "react-icons/pi";
 import { useFormik} from 'formik'
 import { ButtonSubmit } from '../../components/UI/Button/ButtonStyles'
 import * as Yup from 'yup'
+import { useDispatch } from 'react-redux'
+import { setNewUser } from '../../redux/user/userSlice'
 
 const CreateAccount = () => {
+    const dispatch = useDispatch()
 
     const regexDni = /\d{6}$/;
     const regexPhone = /\d{9}$/;
@@ -23,7 +26,7 @@ const CreateAccount = () => {
         apellido: Yup.string().trim().required("Este campo es requerido"),
         fechaNacimiento: Yup.date().required("Este campo es requerido"),
         telefono: Yup.string()
-        .matches(regexPhone, "Minimo de 10 caracteres")
+        .matches(regexPhone, "Minimo de 9 caracteres")
         .trim().required("Este campo es requerido"),
         email: Yup.string()
         .email("Correo electronico invalido")
@@ -42,9 +45,15 @@ const CreateAccount = () => {
         validationSchema,
         onSubmit: (values, {resetForm}) => {
             console.log(values);
+            nextPage()
             resetForm()
+            dispatch(setNewUser(values))
         }
     })
+
+    const nextPage = () => {
+        window.location.href = '/create-password' 
+    }
 
     return (
         <CreateAccountContainerStyled>
@@ -102,7 +111,12 @@ const CreateAccount = () => {
                             {...getFieldProps('email')}
                         />
                     </CreateAccountInputs>
-                    <ButtonSubmit onClick={handleSubmit}>Continuar</ButtonSubmit>
+                        <ButtonSubmit 
+                            type='submit'
+                            onClick={handleSubmit}>
+                            Continuar
+                        </ButtonSubmit>
+
                 </CreateAccountData>
                 <p>¿Ya tienes cuenta? <NavLink to={'/login'}>Inicia Sesion</NavLink></p>
             </CreateAccountWrapper>

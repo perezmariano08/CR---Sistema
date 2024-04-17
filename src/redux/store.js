@@ -6,17 +6,19 @@ import storage from "redux-persist/lib/storage"
 import notisReducer from "./Notis/notisSlice"
 import planilleroReducer from "./Planillero/planilleroSlice"
 import matchesReducer from "./Matches/matchesSlice"
+import newUserReducer from "./user/userSlice"
 
 const reducers = combineReducers({
     notis: notisReducer,
     planillero: planilleroReducer,
-    match: matchesReducer
+    match: matchesReducer,
+    newUser: newUserReducer
 });
 
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: ["notis", "planillero", "match",]
+    whitelist: ["notis", "planillero", "match", "newUser"]
 }
 
 //al persist se le pasa como segundo parametro los reducers que va a consumir, y los que se guardan en localStorage son los incluidos en la whitelist

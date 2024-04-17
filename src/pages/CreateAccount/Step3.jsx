@@ -1,25 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CreateAccountContainerStyled, CreateAccountData, CreateAccountInputs, CreateAccountWrapper } from './CreateAccountStyles'
-import Input from '../../components/UI/Input/Input'
-import { HiCalendar, HiKey, HiOutlineCreditCard, HiUser, HiPhone, HiEnvelope, HiOutlineShieldCheck } from 'react-icons/hi2'
-import Button from '../../components/UI/Button/Button'
-import { NavLink } from 'react-router-dom'
-import InputPassword from '../../components/UI/Input/InputPassword'
 import Select from '../../components/Select/Select'
 import { dataEquipos } from '../../Data/Equipos/DataEquipos'
 import { IoShieldHalf } from "react-icons/io5";
+import { ButtonSubmit } from '../../components/UI/Button/ButtonStyles'
+import { useDispatch } from 'react-redux';
+import { setNewUserTeamFavorite } from '../../redux/user/userSlice';
 
 const Step3 = () => {
+
+    const [teamSelected, setTeamSelected] = useState(0);
+    const dispatch = useDispatch()
+
+    const handleSetTeamSelected = (e) => {
+        setTeamSelected(e.target.value)
+    }
+
+    const handleNext = () => {
+        if (teamSelected === 0) {
+            return
+        }
+        dispatch(setNewUserTeamFavorite(teamSelected))
+        window.location.href = '/login' 
+    }
+
+
     return (
         <CreateAccountContainerStyled>
             <CreateAccountWrapper>
                 <CreateAccountData>
                     <h2>Selecciona tu equipo favorito</h2>
                     <CreateAccountInputs>
-                        <Select data={dataEquipos} placeholder={'Seleccionar equipo'} icon={<IoShieldHalf className='icon-select' />}>
+                        <Select
+                        onChange={handleSetTeamSelected} 
+                        data={dataEquipos} 
+                        placeholder={'Seleccionar equipo'} 
+                        icon={<IoShieldHalf className='icon-select' />}>
                         </Select>
                     </CreateAccountInputs>
-                    <Button to={'/login'}>Crear cuenta</Button>
+                    <ButtonSubmit
+                    onClick={handleNext}
+                    >Crear cuenta</ButtonSubmit>
                 </CreateAccountData>
             </CreateAccountWrapper>
         </CreateAccountContainerStyled>

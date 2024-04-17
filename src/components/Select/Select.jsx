@@ -6,9 +6,9 @@ const Select = ({ children, data, placeholder, column = "nombre", onChange, id_,
     return (
         <SelectContainerStyled>
             <SelectWrapper onChange={onChange}>
-                <option value="0" disabled selected>{placeholder}</option>
-                {data.map((item) => (
-                    <option key={item[id_]} value={item[id_]}>{item[column]}</option>
+                <option value='0'>{placeholder}</option>
+                {data.map((item, index) => (
+                    <option key={index + 1} value={item[id_]}>{item[column]}</option>
                 ))}
             </SelectWrapper>
             <VscTriangleDown className='arrow' />
