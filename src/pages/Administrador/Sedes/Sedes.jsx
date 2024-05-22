@@ -30,7 +30,7 @@ const Sedes = () => {
     const [sedesList, setSedes] = useState([])
     const add = () => {
         if (nombre != "") {
-            Axios.post(`${URL}/api/crear-sede`, {
+            Axios.post(`${URL}/crear-sede`, {
                 nombre,
                 descripcion
             }).then(()=>{
@@ -44,7 +44,7 @@ const Sedes = () => {
     }
 
     const getSedes = () => {
-        Axios.get(`${URL}/api/sedes`).then((response)=>{
+        Axios.get(`${URL}/sedes`).then((response)=>{
             setSedes(response.data)
         })
     }

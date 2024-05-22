@@ -1,12 +1,32 @@
-import React from 'react'
-import CardPartido from '../../components/Stats/CardPartido/CardPartido'
-import { HomeWrapper, HomeContainerStyled, CardsMatchesContainer, CardsMatchesWrapper } from './HomeStyles'
-import Section from '../../components/Section/Section'
-import Table from '../../components/Stats/Table/Table'
+import React, { useEffect, useState } from 'react';
+import CardPartido from '../../components/Stats/CardPartido/CardPartido';
+import { HomeWrapper, HomeContainerStyled, CardsMatchesContainer, CardsMatchesWrapper } from './HomeStyles';
+import Section from '../../components/Section/Section';
+import Table from '../../components/Stats/Table/Table';
+import { Toaster, toast } from 'react-hot-toast';
+import { useAuth } from '../../Auth/AuthContext';
 
 const Home = () => {
+    const { userName, showWelcomeToast, setShowWelcomeToast } = useAuth();
+    
+    useEffect(() => {
+        if (userName && showWelcomeToast) {
+            toast(`Bienvenid@, ${userName}`, {
+                icon: '👋',
+                style: {
+                    borderRadius: '10px',
+                    background: 'var(--gray-500)',
+                    color: 'var(--white)',
+                },
+                duration: 4000,
+                position: "top-center"
+            });
+            setShowWelcomeToast(false);
+        }
+    }, [userName, showWelcomeToast, setShowWelcomeToast]);
+
     return (
-        <>
+        <>  
             <HomeContainerStyled className='container'>
                 <HomeWrapper className='wrapper'>
                     <Section>
@@ -32,8 +52,9 @@ const Home = () => {
                     </Section>
                 </HomeWrapper>
             </HomeContainerStyled>
+            <Toaster/>
         </> 
-    )
+    );
 }
 
-export default Home
+export default Home;

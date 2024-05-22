@@ -61,3 +61,38 @@ export const MoreIconContainer = styled.div`
     background: var(--green);
     color: white;
 `
+export const ButtonLogout = styled.button`
+    display: flex;
+    padding: 10.5px 17.5px;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: transparent;
+    height: fit-content;
+    border-radius: 20px;
+    cursor: pointer;
+    user-select: none;
+    color: var(--white);
+    border: 1px solid var(--red);
+    background: var(--red);
+    transition: all .1s ease-in-out;
+
+    &:hover {
+        opacity: .7;
+        @media (maxwidth: 768px) {
+            opacity: 1;
+        }
+    }
+
+    &:disabled {
+        opacity: .3;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    &i,svg {
+        font-size: 20px;
+    }
+`

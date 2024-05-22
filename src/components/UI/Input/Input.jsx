@@ -2,7 +2,7 @@ import React, { useState, forwardRef } from 'react';
 import { InputContainerStyled, InputWrapper } from './InputSyles';
 import { AiOutlineEye, AiFillEyeInvisible } from 'react-icons/ai';
 
-const Input = forwardRef(({ placeholder, type = "text", onChange, value, required, id, name, inputMode, icon, className, isError, ...field }, ref) => {
+const Input = forwardRef(({ placeholder, type = "text", icon, className, isError, ...props }, ref) => {
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -15,13 +15,8 @@ const Input = forwardRef(({ placeholder, type = "text", onChange, value, require
                 ref={ref}
                 type={showPassword ? "text" : type}
                 placeholder={placeholder}
-                onChange={onChange}
-                required={required}
-                id={id}
-                name={name}
-                inputMode={inputMode}
                 className={className}
-                value={value}
+                {...props} // Pasar todos los props al campo de entrada
             />
             {icon}
             {type === 'password' && (

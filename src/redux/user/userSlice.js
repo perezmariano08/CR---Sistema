@@ -4,14 +4,20 @@ const INITIAL_STATE = {
     currentUser: null,
     hiddenMenu: true,
     newUser: {
-        id: 1,
         dni: '',
         nombre: '',
-        nacimiento: '',
+        apellido: '',
+        fechaNacimiento: '',
         telefono: '',
         email: '',
         clave: '',
         equipoFav: ''
+    },
+    currentUser: {
+        isLog: '',
+        dni: '',
+        nombre: '',
+        equipo: '',
     }
 };
 
@@ -43,9 +49,12 @@ const userSlice = createSlice({
         setNewUserTeamFavorite: (state, action) => {
             state.newUser.equipoFav = action.payload;
         },
+        setLogCurrentUser: (state, action) => {
+            state.currentUser.isLog = action.payload;
+        },
     },
 });
 
-export const { setCurrentUser, toggleHiddenMenu, setNewUser, setNewUserPassword, setNewUserTeamFavorite} = userSlice.actions;
+export const { setCurrentUser, toggleHiddenMenu, setNewUser, setNewUserPassword, setNewUserTeamFavorite, setLogCurrentUser} = userSlice.actions;
 
 export default userSlice.reducer;

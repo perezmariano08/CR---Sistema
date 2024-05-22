@@ -89,3 +89,35 @@ export const LoginDataPassword = styled.div`
         color: var(--white)
     }
 `
+export const ButtonLogin = styled.button`
+    display: flex;
+    padding: 10.5px 17.5px;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: var(--green);
+    height: fit-content;
+    border-radius: 20px;
+    cursor: pointer;
+    user-select: none;
+    color: var(--white);
+    border: 1px solid var(--green);
+    background: var(--green);
+    transition: all .1s ease-in-out;
+
+    &:hover {
+        opacity: .7;
+        @media (maxwidth: 768px) {
+            opacity: 1;
+        }
+    }
+
+    &:disabled {
+        opacity: .3;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+`
+

@@ -31,7 +31,7 @@ const Años = () => {
     const [añosList, setAños] = useState([])
     const add = () => {
         if (año != "") {
-            Axios.post(`${URL}/api/crear-anio`, {
+            Axios.post(`${URL}/crear-anio`, {
                 año,
                 descripcion
             }).then(()=>{

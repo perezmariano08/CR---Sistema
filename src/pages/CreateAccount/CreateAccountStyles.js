@@ -49,3 +49,23 @@ export const CreateAccountInputs = styled.form`
         width: 100%;
     }
 `
+export const InputContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    p {
+        font-size: 12px;
+        color: var(--red);
+    }
+`
+export const ErrorContainer = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    p, svg {
+        color: var(--red);
+        font-size: 12px;
+    }
+`

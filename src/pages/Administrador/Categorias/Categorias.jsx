@@ -30,7 +30,7 @@ const Categorias = () => {
 
 
     const getCategorias =  () => {
-        axios.get(`${URL}/api/categorias`)
+        axios.get(`${URL}/categorias`)
         .then((response)=>{
             setCategorias(response.data)
         })
@@ -41,14 +41,14 @@ const Categorias = () => {
 
     const add = () => {
         if (nombre !== "") {
-            axios.post(`${URL}/api/crear-categoria`, {
+            axios.post(`${URL}/crear-categoria`, {
                 nombre,
                 descripcion
             }).then(()=>{
                 alert("Categoria registrada")
             })
             closeCreateModal()
-            getCategorias
+            getCategorias()
         } else {
             alert("Completa los campos")
         }
@@ -73,7 +73,6 @@ const Categorias = () => {
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         console.log('Selected file:', file);
-        // Aquí puedes manejar la lógica para leer el archivo CSV
     };
 
     getCategorias()
