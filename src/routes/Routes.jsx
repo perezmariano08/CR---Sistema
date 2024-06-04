@@ -29,6 +29,8 @@ import Partidos from '../pages/Administrador/Partidos/Partidos'
 import Admin from '../pages/Administrador/Admin/Admin'
 import ProtectedRoute from '../Auth/ProtectedRoute';
 import { AuthProvider } from '../Auth/AuthContext';
+import PrivateLayoutPlanillero from '../components/Layout/LayoutPlanillero';
+import MorePlanillero from '../pages/More/MorePlanillero';
 
 const Routes = () => {
     return (
@@ -61,8 +63,9 @@ const Routes = () => {
 
                         {/* Planillero */}
                         <Route element={<ProtectedRoute role={2} />}>
-                            <Route path='/planillero' element={<LayoutPrivate> <HomePlanillero/> </LayoutPrivate>} />
-                            <Route path='/planillero/planilla' element={<LayoutPrivate> <Planilla/> </LayoutPrivate>} />
+                            <Route path='/planillero' element={<PrivateLayoutPlanillero> <HomePlanillero/> </PrivateLayoutPlanillero>} />
+                            <Route path='/planillero/planilla' element={<PrivateLayoutPlanillero> <Planilla/> </PrivateLayoutPlanillero>} />
+                            <Route path='/planillero/more' element={<PrivateLayoutPlanillero> <MorePlanillero/> </PrivateLayoutPlanillero>} />
                         </Route>
 
                         {/* Rutas del usuario */}

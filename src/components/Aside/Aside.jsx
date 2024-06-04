@@ -3,34 +3,77 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { IoShieldHalf } from "react-icons/io5";
 import { FaAngleDown } from "react-icons/fa6";
 import { LiaFutbol } from "react-icons/lia";
-import { GoTrophy } from "react-icons/go";
 import { TbCalendarEvent } from "react-icons/tb";
 import { PiUsers } from "react-icons/pi";
 import { MdOutlineDashboard } from "react-icons/md";
+import { IoIosLogOut } from "react-icons/io";
 import { AsideContainerStyled, AsideHeader, AsideMenu, AsideUser, MenuItem, NavLinkAngleDown, NavLinkItem, SubMenu, SubMenuItem } from './AsideStyles';
 import Divider from '../Divider/Divider';
 import LogoCR from '../../assets/Logos/logoCopaRelampago.png'
 import UserImg from '../../assets/user-default.png'
 import { useLocation } from 'react-router-dom';
 import { TbShirtSport } from "react-icons/tb";
+import { useAuth } from '../../Auth/AuthContext';
+import { useDispatch } from 'react-redux';
+import { setLogCurrentUser } from '../../redux/user/userSlice';
+import axios from 'axios';
+import { URL } from '../../utils/utils';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Aside = ({className}) => {
-    const location = useLocation(); // Obtén la ruta actual
+    const dispatch = useDispatch()
+    const location = useLocation();
+    
     const [showSubMenu, setShowSubMenu] = useState(false);
-
-    // Verifica si la ruta actual pertenece al submenú de "Temporadas"
     const isActiveTemporadas = location.pathname.includes("/admin/temporadas");
-
-    // Al cargar la página, establece el estado del submenú en función de si la ruta actual pertenece a "Temporadas"
-    useEffect(() => {
-        setShowSubMenu(isActiveTemporadas);
-    }, [isActiveTemporadas]);
 
     const toggleSubMenu = () => {
         setShowSubMenu(!showSubMenu);
     };
 
+    //Cerrar Sesion 
+    axios.defaults.withCredentials = true;
+    const closeSesion = async () => {
+        try {
+            const response = await axios.post(`${URL}/auth/logout`, {
+                method: 'POST',
+                credentials: 'include'
+            });
+            if (response.status === 401) {
+                console.error('Error al cerrar sesión: No autorizado');
+            } else if (response.status !== 200) {
+                console.error('Error al cerrar sesión: ', response.statusText);
+            } else {
+                console.log('Sesión cerrada exitosamente');
+                dispatch(setLogCurrentUser())
+                window.location.href = '/login';
+            }
+        } catch (error) {
+            console.error('Error al cerrar sesión aca:', error);
+        }
+    };
+
+    //Mensaje bienvenida
+    const {userName, showWelcomeToast, setShowWelcomeToast} = useAuth()
+    useEffect(() => {
+        if (userName && showWelcomeToast) {
+            toast(`Bienvenid@, administrador ${userName}`, {
+                icon: '👋',
+                style: {
+                    borderRadius: '10px',
+                    background: 'var(--gray-500)',
+                    color: 'var(--white)',
+                },
+                duration: 4000,
+                position: "top-center"
+            });
+            setShowWelcomeToast(false);
+        }
+        setShowSubMenu(isActiveTemporadas);
+    }, [userName, showWelcomeToast, setShowWelcomeToast, isActiveTemporadas]);
+    
     return (
+        <>
         <AsideContainerStyled className={className}>
             <AsideHeader>
                 <img src={LogoCR} alt="" />
@@ -38,7 +81,8 @@ const Aside = ({className}) => {
             <Divider color="gray-300" />
             <AsideUser>
                 <img src={UserImg} alt="" />
-                <p>Octavio Pereyra</p>
+                <p>{userName}</p>
+                <IoIosLogOut onClick={closeSesion}/>
             </AsideUser>
             <Divider color="gray-300" />
             <AsideMenu>
@@ -99,6 +143,8 @@ const Aside = ({className}) => {
                 </MenuItem>
             </AsideMenu>
         </AsideContainerStyled>
+        <Toaster/>
+        </>
     );
 };
 

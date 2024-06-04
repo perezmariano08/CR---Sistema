@@ -45,6 +45,12 @@ export const AsideUser = styled.div`
     img {
         width: 20px;
     }
+
+    &i,svg{
+        color: red;
+        font-size: 20px;
+        cursor: pointer;
+    }
 `
 
 export const AsideMenu = styled.ul`

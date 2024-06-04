@@ -1,5 +1,4 @@
 import Content from '../../../components/Content/Content'
-
 import { ContentTitle } from '../../../components/Content/ContentStyles'
 
 const Admin = () => {

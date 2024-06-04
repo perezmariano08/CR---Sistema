@@ -6,21 +6,23 @@ export const MenuBottomContainerStyled = styled.footer`
     padding: 0 10px 20px 10px;
     position: fixed;
     bottom: 0;
-`
+    display: flex;
+    justify-content: center;
+`;
 
 export const MenuBottomWrapper = styled.div`
-    width: 100%;
     background-color: var(--gray-500);
     border-radius: 30px;
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
+    gap: 35px;
     align-items: center;
     padding: 20px 30px;
     h4 {
         font-size: 10px;
         font-weight: 400;
     }
-`
+`;
 
 export const MenuBottomItem = styled(NavLink)`
     display: flex;
@@ -30,8 +32,8 @@ export const MenuBottomItem = styled(NavLink)`
     i, svg {
         font-size: 20px;
     }
-    
+
     &.active {
         color: var(--green);
     }
-`
+`;
